@@ -296,7 +296,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275880612}
-  m_LocalRotation: {x: 0.20957094, y: 0.000000016824284, z: -0.0000000036059573, w: 0.97779346}
+  m_LocalRotation: {x: 0.20957094, y: -0.000000016824288, z: 0.0000000036059575, w: 0.97779346}
   m_LocalPosition: {x: 0, y: 3.714941, z: -6.7815175}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 350325189}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -688,12 +688,12 @@ PrefabInstance:
     - target: {fileID: 3540114271284406859, guid: d318c6fd10aab4a199c14045726ab27b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000016824284
+      value: -0.000000016824288
       objectReference: {fileID: 0}
     - target: {fileID: 3540114271284406859, guid: d318c6fd10aab4a199c14045726ab27b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000036059573
+      value: 0.0000000036059575
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d318c6fd10aab4a199c14045726ab27b, type: 3}

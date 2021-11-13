@@ -77,11 +77,13 @@ public class ShootingScript : MonoBehaviour
                 /* The raycast has hit it's intended target, and we will deal damage appropriately */
                 if (tag == "Player")
                 {
-                    //hit.GetComponent<PlayerScript>().deal_damage(damage)    
+                    //hit.GetComponent<PlayerScript>().deal_damage(damage)
+                    Debug.Log("Detected Player");
                 }
                 else if (tag == "Enemy")
                 {
                     //hit.GetComponent<EnemyScript>().deal_damage(damage)
+                    Debug.Log("Detected Enemy");
                 }
             }
             else
