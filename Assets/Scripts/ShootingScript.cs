@@ -17,7 +17,8 @@ public class ShootingScript : MonoBehaviour
     
     /* Debug and testing variables, to be deleted */
     private int enemy_counter = 0;  
-    private int player_counter = 0;    
+    private int player_counter = 0;
+    private LineRenderer laser;
     
     void Start()
     {
@@ -25,6 +26,7 @@ public class ShootingScript : MonoBehaviour
         {
             StartCoroutine("enemy_firing");
         }
+        laser = GetComponent<LineRenderer>();
     }
     
     void FixedUpdate()
@@ -59,8 +61,11 @@ public class ShootingScript : MonoBehaviour
         /* Search for enemy within raycast, and set cooldown for $firing_speed */
         raycast("Enemy");
         cooldown = true;
+        laser.enabled = true;
         yield return new WaitForSeconds(firing_speed);
+        laser.enabled = false;
         cooldown = false;
+        
     }
 
     private void raycast(string tag)
@@ -69,6 +74,7 @@ public class ShootingScript : MonoBehaviour
         RaycastHit hit;
         int layerMask = 1 << 3;
         layerMask = ~layerMask;
+        laser.SetPosition(0, transform.position);
         
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
         {
@@ -97,6 +103,8 @@ public class ShootingScript : MonoBehaviour
         }
         
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+        laser.SetPosition (1, hit.point+transform.TransformDirection(Vector3.forward)*100);
+        
     }
 
 }
