@@ -97,6 +97,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyRoom #4
       objectReference: {fileID: 0}
+    - target: {fileID: 2218673820313424705, guid: 81b5dd03c21387c4ea8ba601b6b96e64,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy Spawner
+      objectReference: {fileID: 0}
     - target: {fileID: 2780046994995979936, guid: 81b5dd03c21387c4ea8ba601b6b96e64,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -276,6 +281,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemyRoom #1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2218673820313424705, guid: 81b5dd03c21387c4ea8ba601b6b96e64,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 6421675703438498782, guid: 81b5dd03c21387c4ea8ba601b6b96e64,
         type: 3}
@@ -625,6 +635,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemyRoom #3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8971041535798425760, guid: 7406f1e5e19d64e4d805bdd1ec140551,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy Spawner
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7406f1e5e19d64e4d805bdd1ec140551, type: 3}
@@ -986,6 +1001,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyRoom #2
       objectReference: {fileID: 0}
+    - target: {fileID: 2218673820313424705, guid: 81b5dd03c21387c4ea8ba601b6b96e64,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy Spawner
+      objectReference: {fileID: 0}
     - target: {fileID: 2780046994995979936, guid: 81b5dd03c21387c4ea8ba601b6b96e64,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -1165,6 +1185,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShopRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 2218673820313424705, guid: 81b5dd03c21387c4ea8ba601b6b96e64,
+        type: 3}
+      propertyPath: m_TagString
+      value: Shop
       objectReference: {fileID: 0}
     - target: {fileID: 6421675703438498782, guid: 81b5dd03c21387c4ea8ba601b6b96e64,
         type: 3}
@@ -1355,6 +1380,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerSpawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 2218673820313424705, guid: 81b5dd03c21387c4ea8ba601b6b96e64,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 2780046994995979936, guid: 81b5dd03c21387c4ea8ba601b6b96e64,
         type: 3}

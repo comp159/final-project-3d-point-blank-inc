@@ -368,6 +368,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyRoom#4
       objectReference: {fileID: 0}
+    - target: {fileID: 689099167276686800, guid: ae2a24c5e269cca47971757957de7f76,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy Spawner
+      objectReference: {fileID: 0}
     - target: {fileID: 6827859126427421057, guid: ae2a24c5e269cca47971757957de7f76,
         type: 3}
       propertyPath: m_RootOrder
@@ -511,6 +516,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemyRoom#2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3110937333283675389, guid: 5640def9868a9794094eb78d3fc107f7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 7852154693422093410, guid: 5640def9868a9794094eb78d3fc107f7,
         type: 3}
@@ -712,6 +722,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopRoom
       objectReference: {fileID: 0}
+    - target: {fileID: 2476531047806553725, guid: 45ac71b3bfbdfaa459ebfd8b4bd7ed35,
+        type: 3}
+      propertyPath: m_TagString
+      value: Shop
+      objectReference: {fileID: 0}
     - target: {fileID: 4006170112969291822, guid: 45ac71b3bfbdfaa459ebfd8b4bd7ed35,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -822,6 +837,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerSpawn
       objectReference: {fileID: 0}
+    - target: {fileID: 2476531047806553725, guid: 45ac71b3bfbdfaa459ebfd8b4bd7ed35,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player Spawner
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45ac71b3bfbdfaa459ebfd8b4bd7ed35, type: 3}
 --- !u!4 &4905400836835114748 stripped
@@ -916,6 +936,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemyRoom#1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3110937333283675389, guid: 5640def9868a9794094eb78d3fc107f7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 7852154693422093410, guid: 5640def9868a9794094eb78d3fc107f7,
         type: 3}
