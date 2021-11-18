@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - PauseScreen
+  - Enemy Spawner
+  - Shop
+  - Player Spawner
   layers:
   - Default
   - TransparentFX
