@@ -103,7 +103,7 @@ public class ShootingScript : MonoBehaviour
         }
         
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
-        laser.SetPosition (1, hit.point+transform.TransformDirection(Vector3.forward)*100);
+        laser.SetPosition (1, hit.point+transform.TransformDirection(Vector3.forward)*50);
         
     }
 
