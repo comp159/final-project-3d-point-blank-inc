@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
+    [SerializeField] private EnemySpawner e;
     private Vector3 dir;
-
+    private Vector3 temp_enemy;
+    private float speed = 10;
+    // Start is called before the first frame update
     /* Player attributes */
     [SerializeField] private int health = 100;
     [SerializeField] private float movement_speed = 4;
@@ -94,7 +98,16 @@ public class PlayerController : MonoBehaviour
     {
         attack_speed = input_attack_speed;
     }
-
+    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy Spawner"))
+        {
+            temp_enemy = other.gameObject.transform.position;
+            e.SpawnEnemies(temp_enemy);
+            Destroy(other.gameObject);
+        }
+    }
     public void set_money(int input_money)
     {
         schmoney = input_money;
@@ -110,5 +123,5 @@ public class PlayerController : MonoBehaviour
     {
         schmoney += money_added;
     }
-
+    
 }
