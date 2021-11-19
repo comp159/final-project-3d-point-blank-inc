@@ -14,6 +14,6 @@ public class HealthBarScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        gameObject.transform.rotation = Camera.main.gameObject.transform.rotation;
     }
 }
