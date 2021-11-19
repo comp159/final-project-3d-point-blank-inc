@@ -17,7 +17,7 @@ public class ShootingScript : MonoBehaviour
     
     /* Generalized shooting characteristics */
     private float firing_speed;
-    private float damage;
+    private int damage;
 	private LineRenderer laser;
     
     /* Debug and testing variables, to be deleted */
@@ -30,14 +30,15 @@ public class ShootingScript : MonoBehaviour
         {
             firing_speed = player.get_attack_speed();
 			damage = player.get_damage();
+			laser = player.GetComponent<LineRenderer>();
         } 
 		else 
 		{
 			firing_speed = enemy.get_attack_speed();
 			damage = enemy.get_damage();
+			laser = enemy.GetComponent<LineRenderer>();
 			StartCoroutine("enemy_firing");
 		}
-		laser = GetComponent<LineRenderer>();
     }
     
     void FixedUpdate()
@@ -59,7 +60,9 @@ public class ShootingScript : MonoBehaviour
             Debug.Log("Enemy shot: " + enemy_counter);
             
             raycast("Player");
+			laser.enabled = true;
             yield return new WaitForSeconds(firing_speed);
+			laser.enabled = false;
         }
     }
     
@@ -85,7 +88,7 @@ public class ShootingScript : MonoBehaviour
         RaycastHit hit;
         int layerMask = 1 << 3;
         layerMask = ~layerMask;
-        laser.SetPosition(0, transform.position);
+        laser.SetPosition(0, this.transform.position);
         if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.forward), out hit, Mathf.Infinity, layerMask))
         {
             if (hit.collider.tag == tag)
