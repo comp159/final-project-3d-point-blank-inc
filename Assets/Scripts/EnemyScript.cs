@@ -20,18 +20,18 @@ public class EnemyScript : MonoBehaviour
     /* Actions to call before first frame */
     void Start()
     {
-        //currAgent = GetComponent<NavMeshAgent>();
-        //currTarget = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        currAgent = GetComponent<NavMeshAgent>();
+        currTarget = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     /* Continous updates per frame */
     void Update()
     {
-        //float distance = Vector3.Distance(currTarget.position, transform.position);
-        //if (distance <= viewRadius)
-        //{
-        //    currAgent.SetDestination(currTarget.position);
-        //}
+        float distance = Vector3.Distance(currTarget.position, transform.position);
+        if (distance <= viewRadius)
+        {
+            currAgent.SetDestination(currTarget.position);
+        }
     }
 
     private void FixedUpdate()
