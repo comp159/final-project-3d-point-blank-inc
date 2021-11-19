@@ -15,6 +15,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private float movement_speed = 2;
     [SerializeField] private int damage = 1;
     [SerializeField] private float attack_speed = 4f;
+    [SerializeField] private int money_drop = 1;
 
     /* Actions to call before first frame */
     void Start()
@@ -35,11 +36,7 @@ public class EnemyScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        /* Check Health */
-        if (health <= 0)
-        {
-            Destroy(this.gameObject);
-        }
+
     }
     
     /* Getters and Setters */
@@ -61,6 +58,11 @@ public class EnemyScript : MonoBehaviour
     public float get_attack_speed()
     {
         return attack_speed;
+    }
+
+    public int get_money_drop()
+    {
+        return money_drop;
     }
 
     public void set_health(int input_health)

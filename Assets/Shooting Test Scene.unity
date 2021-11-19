@@ -296,7 +296,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275880612}
-  m_LocalRotation: {x: 0.20957094, y: 0.000000016824288, z: -0.000000003605958, w: 0.97779346}
+  m_LocalRotation: {x: 0.20957094, y: 0.000000016824288, z: -0.0000000036059575, w: 0.97779346}
   m_LocalPosition: {x: 0, y: 3.046941, z: -6.7815175}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -428,7 +428,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 350325188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: 0}
+  m_LocalPosition: {x: -2, y: 0.4, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 1955119855}
@@ -451,6 +451,7 @@ MonoBehaviour:
   movement_speed: 2
   damage: 101
   attack_speed: 1
+  money_drop: 10
 --- !u!4 &665608448 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3540114270640795573, guid: d318c6fd10aab4a199c14045726ab27b,
@@ -482,7 +483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1236049596, guid: 45ca3f25a64551a4fbd1f1e5f10d4d69, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000003605958
+      value: -0.0000000036059575
       objectReference: {fileID: 0}
     - target: {fileID: 4860036252970920472, guid: 45ca3f25a64551a4fbd1f1e5f10d4d69,
         type: 3}

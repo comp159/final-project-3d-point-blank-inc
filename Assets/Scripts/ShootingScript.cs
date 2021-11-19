@@ -94,6 +94,12 @@ public class ShootingScript : MonoBehaviour
                 {
                     hit.collider.GetComponent<EnemyScript>().deal_damage(damage);
                     Debug.Log("Detected Enemy: Health now " + hit.collider.GetComponent<EnemyScript>().get_health());
+					if (hit.collider.GetComponent<EnemyScript>().get_health() <= 0)
+					{
+						player.add_money(hit.collider.GetComponent<EnemyScript>().get_money_drop());
+						Debug.Log("New Schmoney Balance: " + player.get_money());
+						Destroy(hit.collider.gameObject);
+					}
                 }
             }
             else

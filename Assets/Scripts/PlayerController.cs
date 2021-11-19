@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float movement_speed = 4;
     [SerializeField] private int damage = 1;
     [SerializeField] private float attack_speed = 2.5f;
+    [SerializeField] private int schmoney = 0;
     
     /* Actions to call before first frame */
     void Start()
@@ -69,6 +70,11 @@ public class PlayerController : MonoBehaviour
         return attack_speed;
     }
 
+    public int get_money()
+    {
+        return schmoney;
+    }
+
     public void set_health(int input_health)
     {
         health = input_health;
@@ -89,10 +95,20 @@ public class PlayerController : MonoBehaviour
         attack_speed = input_attack_speed;
     }
 
-    /* Ease of access to deal damage */
+    public void set_money(int input_money)
+    {
+        schmoney = input_money;
+    }
+
+    /* Ease of access for specific functions */
     public void deal_damage(int damage_dealt)
     {
         health -= damage_dealt;
+    }
+
+    public void add_money(int money_added)
+    {
+        schmoney += money_added;
     }
 
 }
