@@ -8,23 +8,34 @@ public class ShootingScript : MonoBehaviour
     [SerializeField] private bool player_shooting;
     
     /* Player-specific shooting characteristics */
+	[SerializeField] private PlayerController player;
     [SerializeField] private int clip_size;
     private bool cooldown = false;
+
+	/* Enemy variable, assuming player isn't the parent */
+	[SerializeField] private EnemyScript enemy;
     
     /* Generalized shooting characteristics */
-    [SerializeField] private float firing_speed;
-    [SerializeField] private float damage;
-    
-    /* Debug and testing variables, to be deleted */
-    private int enemy_counter = 0;  
-    private int player_counter = 0;    
-    
+    private float firing_speed;
+    private int damage;
+
+	/* Debug and testing */
+	private int player_counter = 0;
+	private int enemy_counter = 0;
+
     void Start()
     {
-        if (!player_shooting)
+        if (player_shooting)
         {
-            StartCoroutine("enemy_firing");
-        }
+            firing_speed = player.get_attack_speed();
+			damage = player.get_damage();
+        } 
+		else 
+		{
+			firing_speed = enemy.get_attack_speed();
+			damage = enemy.get_damage();
+			StartCoroutine("enemy_firing");
+		}
     }
     
     void FixedUpdate()
@@ -69,34 +80,35 @@ public class ShootingScript : MonoBehaviour
         RaycastHit hit;
         int layerMask = 1 << 3;
         layerMask = ~layerMask;
-        
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.forward), out hit, Mathf.Infinity, layerMask))
         {
             if (hit.collider.tag == tag)
             {
                 /* The raycast has hit it's intended target, and we will deal damage appropriately */
                 if (tag == "Player")
                 {
-                    //hit.GetComponent<PlayerScript>().deal_damage(damage)
-                    Debug.Log("Detected Player");
+                    hit.collider.GetComponent<PlayerController>().deal_damage(damage);
+                    Debug.Log("Detected Player: Health now " + hit.collider.GetComponent<PlayerController>().get_health());
                 }
                 else if (tag == "Enemy")
                 {
-                    //hit.GetComponent<EnemyScript>().deal_damage(damage)
-                    Debug.Log("Detected Enemy");
+                    hit.collider.GetComponent<EnemyScript>().deal_damage(damage);
+                    Debug.Log("Detected Enemy: Health now " + hit.collider.GetComponent<EnemyScript>().get_health());
                 }
             }
             else
             {
                 /* Raycast has missed it's intended target, and will not do anything */
+				Debug.Log("Hit " + hit.collider.tag);
             }
         }
         else
         {
             /* Raycast has missed it's intended target (completely), and will not do anything */
+			Debug.Log("Missed");
         }
         
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+        Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.forward) * 1000, Color.white);
     }
 
 }
