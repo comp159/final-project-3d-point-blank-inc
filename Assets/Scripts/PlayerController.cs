@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
-
+    [SerializeField] private EnemySpawner e;
     private Vector3 dir;
+    private Vector3 temp_enemy;
 
-    private float speed = 4;
+    private float speed = 10;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,5 +36,15 @@ public class PlayerController : MonoBehaviour
         float v = Input.mousePosition.y - Screen.height / 2;
         float angle = -Mathf.Atan2(v,h) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler (0, angle-90, 0);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy Spawner"))
+        {
+            temp_enemy = other.gameObject.transform.position;
+            e.SpawnEnemies(temp_enemy);
+            Destroy(other.gameObject);
+        }
     }
 }
