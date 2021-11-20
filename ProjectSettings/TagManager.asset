@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - PauseScreen
+  - TitleScreenEndButton
+  - TitleScreenStartButton
   layers:
   - Default
   - TransparentFX
