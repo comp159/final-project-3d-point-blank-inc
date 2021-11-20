@@ -8,23 +8,36 @@ public class ShootingScript : MonoBehaviour
     [SerializeField] private bool player_shooting;
     
     /* Player-specific shooting characteristics */
+	[SerializeField] private PlayerController player;
     [SerializeField] private int clip_size;
     private bool cooldown = false;
+
+	/* Enemy variable, assuming player isn't the parent */
+	[SerializeField] private EnemyScript enemy;
     
     /* Generalized shooting characteristics */
-    [SerializeField] private float firing_speed;
-    [SerializeField] private float damage;
+    private float firing_speed;
+    private int damage;
+	private LineRenderer laser;
     
     /* Debug and testing variables, to be deleted */
     private int enemy_counter = 0;  
-    private int player_counter = 0;    
-    
+    private int player_counter = 0;
+
     void Start()
     {
-        if (!player_shooting)
+        laser = GetComponent<LineRenderer>();
+		if (player_shooting)
         {
-            StartCoroutine("enemy_firing");
-        }
+            firing_speed = player.get_attack_speed();
+			damage = player.get_damage();
+        } 
+		else 
+		{
+			firing_speed = enemy.get_attack_speed();
+			damage = enemy.get_damage();
+			StartCoroutine("enemy_firing");
+		}
     }
     
     void FixedUpdate()
@@ -46,6 +59,9 @@ public class ShootingScript : MonoBehaviour
             Debug.Log("Enemy shot: " + enemy_counter);
             
             raycast("Player");
+			laser.enabled = true;
+			yield return new WaitForSeconds(0.5f);
+			laser.enabled = false;
             yield return new WaitForSeconds(firing_speed);
         }
     }
@@ -59,8 +75,12 @@ public class ShootingScript : MonoBehaviour
         /* Search for enemy within raycast, and set cooldown for $firing_speed */
         raycast("Enemy");
         cooldown = true;
+        laser.enabled = true;
+		yield return new WaitForSeconds(0.5f);
+		laser.enabled = false;
         yield return new WaitForSeconds(firing_speed);
         cooldown = false;
+        
     }
 
     private void raycast(string tag)
@@ -69,34 +89,43 @@ public class ShootingScript : MonoBehaviour
         RaycastHit hit;
         int layerMask = 1 << 3;
         layerMask = ~layerMask;
-        
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
+        laser.SetPosition(0, this.transform.position);
+        if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.forward), out hit, Mathf.Infinity, layerMask))
         {
             if (hit.collider.tag == tag)
             {
                 /* The raycast has hit it's intended target, and we will deal damage appropriately */
                 if (tag == "Player")
                 {
-                    //hit.GetComponent<PlayerScript>().deal_damage(damage)
-                    Debug.Log("Detected Player");
+                    hit.collider.GetComponent<PlayerController>().deal_damage(damage);
+                    Debug.Log("Detected Player: Health now " + hit.collider.GetComponent<PlayerController>().get_health());
                 }
                 else if (tag == "Enemy")
                 {
-                    //hit.GetComponent<EnemyScript>().deal_damage(damage)
-                    Debug.Log("Detected Enemy");
+                    hit.collider.GetComponent<EnemyScript>().deal_damage(damage);
+                    Debug.Log("Detected Enemy: Health now " + hit.collider.GetComponent<EnemyScript>().get_health());
+					if (hit.collider.GetComponent<EnemyScript>().get_health() <= 0)
+					{
+						player.add_money(hit.collider.GetComponent<EnemyScript>().get_money_drop());
+						Debug.Log("New Schmoney Balance: " + player.get_money());
+						Destroy(hit.collider.gameObject);
+					}
                 }
             }
             else
             {
                 /* Raycast has missed it's intended target, and will not do anything */
+				Debug.Log("Hit " + hit.collider.tag);
             }
         }
         else
         {
             /* Raycast has missed it's intended target (completely), and will not do anything */
+			Debug.Log("Missed");
         }
         
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+        Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.forward) * 1000, Color.white);
+        laser.SetPosition (1, hit.point+transform.TransformDirection(-Vector3.forward)*50);
     }
 
 }

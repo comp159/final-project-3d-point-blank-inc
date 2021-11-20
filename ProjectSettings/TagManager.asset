@@ -8,6 +8,9 @@ TagManager:
   - PauseScreen
   - TitleScreenEndButton
   - TitleScreenStartButton
+  - Enemy Spawner
+  - Shop
+  - Player Spawner
   layers:
   - Default
   - TransparentFX
