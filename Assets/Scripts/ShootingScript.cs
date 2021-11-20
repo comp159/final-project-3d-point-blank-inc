@@ -26,17 +26,16 @@ public class ShootingScript : MonoBehaviour
 
     void Start()
     {
-        if (player_shooting)
+        laser = GetComponent<LineRenderer>();
+		if (player_shooting)
         {
             firing_speed = player.get_attack_speed();
 			damage = player.get_damage();
-			laser = player.GetComponent<LineRenderer>();
         } 
 		else 
 		{
 			firing_speed = enemy.get_attack_speed();
 			damage = enemy.get_damage();
-			laser = enemy.GetComponent<LineRenderer>();
 			StartCoroutine("enemy_firing");
 		}
     }
@@ -61,8 +60,9 @@ public class ShootingScript : MonoBehaviour
             
             raycast("Player");
 			laser.enabled = true;
-            yield return new WaitForSeconds(firing_speed);
+			yield return new WaitForSeconds(0.5f);
 			laser.enabled = false;
+            yield return new WaitForSeconds(firing_speed);
         }
     }
     
@@ -76,8 +76,9 @@ public class ShootingScript : MonoBehaviour
         raycast("Enemy");
         cooldown = true;
         laser.enabled = true;
+		yield return new WaitForSeconds(0.5f);
+		laser.enabled = false;
         yield return new WaitForSeconds(firing_speed);
-        laser.enabled = false;
         cooldown = false;
         
     }
