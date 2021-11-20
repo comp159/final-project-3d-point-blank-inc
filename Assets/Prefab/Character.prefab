@@ -360,7 +360,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5204333318927708322}
   - component: {fileID: 5742996524967843106}
-  - component: {fileID: 5742996524967843117}
   - component: {fileID: 5742996524967843107}
   - component: {fileID: 432106040}
   - component: {fileID: 432106035}
@@ -385,7 +384,7 @@ Transform:
   - {fileID: 3785650173741473852}
   - {fileID: 4069004195597418927}
   - {fileID: 1236049596}
-  - {fileID: 2388679976538734222}
+  - {fileID: 1129865853049486488}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -408,22 +407,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5742996524967843117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4860036252970920472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff0960ef4ea6e04eac66b4a7fd2189d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RigLayers:
-  - m_Rig: {fileID: 0}
-    m_Active: 1
-  m_Effectors: []
 --- !u!114 &5742996524967843107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,13 +442,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1
-  m_Radius: 0.5
+  m_Height: 2.8
+  m_Radius: 0.6
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1.2, z: 0}
 --- !u!114 &432106035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,11 +461,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c6a30f04a1564f1e888f441a4253bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  e: {fileID: 0}
   health: 100
   movement_speed: 4
   damage: 25
   attack_speed: 2.5
---- !u!1001 &3353031944277143285
+  schmoney: 0
+--- !u!1001 &1650158819
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -502,7 +487,7 @@ PrefabInstance:
     - target: {fileID: 1129865852473102459, guid: 5103a9b94c956d0cab0b98cbce018857,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1129865852473102459, guid: 5103a9b94c956d0cab0b98cbce018857,
         type: 3}
@@ -517,17 +502,17 @@ PrefabInstance:
     - target: {fileID: 1129865852473102459, guid: 5103a9b94c956d0cab0b98cbce018857,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1129865852473102459, guid: 5103a9b94c956d0cab0b98cbce018857,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1129865852473102459, guid: 5103a9b94c956d0cab0b98cbce018857,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1129865852473102459, guid: 5103a9b94c956d0cab0b98cbce018857,
         type: 3}
@@ -554,21 +539,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 432106035}
-    - target: {fileID: 4348695025576513055, guid: 5103a9b94c956d0cab0b98cbce018857,
-        type: 3}
-      propertyPath: clip_size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4348695025576513055, guid: 5103a9b94c956d0cab0b98cbce018857,
-        type: 3}
-      propertyPath: player_shooting
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5103a9b94c956d0cab0b98cbce018857, type: 3}
---- !u!4 &2388679976538734222 stripped
+--- !u!4 &1129865853049486488 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1129865852473102459, guid: 5103a9b94c956d0cab0b98cbce018857,
     type: 3}
-  m_PrefabInstance: {fileID: 3353031944277143285}
+  m_PrefabInstance: {fileID: 1650158819}
   m_PrefabAsset: {fileID: 0}

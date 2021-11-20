@@ -18,14 +18,16 @@ public class ShootingScript : MonoBehaviour
     /* Generalized shooting characteristics */
     private float firing_speed;
     private int damage;
-
-	/* Debug and testing */
-	private int player_counter = 0;
-	private int enemy_counter = 0;
+	private LineRenderer laser;
+    
+    /* Debug and testing variables, to be deleted */
+    private int enemy_counter = 0;  
+    private int player_counter = 0;
 
     void Start()
     {
-        if (player_shooting)
+        laser = GetComponent<LineRenderer>();
+		if (player_shooting)
         {
             firing_speed = player.get_attack_speed();
 			damage = player.get_damage();
@@ -57,6 +59,9 @@ public class ShootingScript : MonoBehaviour
             Debug.Log("Enemy shot: " + enemy_counter);
             
             raycast("Player");
+			laser.enabled = true;
+			yield return new WaitForSeconds(0.5f);
+			laser.enabled = false;
             yield return new WaitForSeconds(firing_speed);
         }
     }
@@ -70,8 +75,12 @@ public class ShootingScript : MonoBehaviour
         /* Search for enemy within raycast, and set cooldown for $firing_speed */
         raycast("Enemy");
         cooldown = true;
+        laser.enabled = true;
+		yield return new WaitForSeconds(0.5f);
+		laser.enabled = false;
         yield return new WaitForSeconds(firing_speed);
         cooldown = false;
+        
     }
 
     private void raycast(string tag)
@@ -80,6 +89,7 @@ public class ShootingScript : MonoBehaviour
         RaycastHit hit;
         int layerMask = 1 << 3;
         layerMask = ~layerMask;
+        laser.SetPosition(0, this.transform.position);
         if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.forward), out hit, Mathf.Infinity, layerMask))
         {
             if (hit.collider.tag == tag)
@@ -115,6 +125,7 @@ public class ShootingScript : MonoBehaviour
         }
         
         Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.forward) * 1000, Color.white);
+        laser.SetPosition (1, hit.point+transform.TransformDirection(-Vector3.forward)*50);
     }
 
 }
