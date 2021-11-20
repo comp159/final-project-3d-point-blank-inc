@@ -11,6 +11,7 @@ TagManager:
   - Enemy Spawner
   - Shop
   - Player Spawner
+  - Canvas
   layers:
   - Default
   - TransparentFX

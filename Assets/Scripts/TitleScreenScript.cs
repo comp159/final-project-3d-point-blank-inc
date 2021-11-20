@@ -57,8 +57,8 @@ public class TitleScreenScript : MonoBehaviour
         {
             if (GameStarted)
             {
-                //SceneManager.LoadScene("Main");
-                Debug.Log("Here is where the loadscene would be");
+                SceneManager.LoadScene("Scenes/Main");
+                //Debug.Log("Here is where the loadscene would be");
             }
             if (GameEnded)
             {
