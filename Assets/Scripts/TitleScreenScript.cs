@@ -37,15 +37,7 @@ public class TitleScreenScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameStarted)
-        {
-            
-        }
-        
-        if (GameEnded)
-        {
-            
-        }
+
     }
 
     void FixedUpdate()
