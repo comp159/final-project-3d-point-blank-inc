@@ -14,6 +14,8 @@ public class TitleScreenScript : MonoBehaviour
     private bool GameEnded = false;
 
     private bool coroutineStarted = false;
+    
+    private bool coroutineFinished = false;
 
     private float animCounter = 0;
 
@@ -35,25 +37,17 @@ public class TitleScreenScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameStarted)
-        {
-            
-        }
-        
-        if (GameEnded)
-        {
-            
-        }
+
     }
 
     void FixedUpdate()
     {
-        if (GameStarted || GameEnded)
+        if (coroutineFinished)
         {
             animCounter++;
         }
 
-        if (animCounter == sceneChangeDelayNumber * 50f)
+        if (coroutineFinished && animCounter%50 == 0)
         {
             if (GameStarted)
             {
@@ -125,7 +119,7 @@ public class TitleScreenScript : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
         }
-        
+        coroutineFinished = true;
         yield return null;
     }
         private void OnMouseDown()
