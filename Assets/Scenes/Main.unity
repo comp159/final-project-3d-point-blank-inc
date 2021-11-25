@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -989,7 +989,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1029,7 +1029,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1211527801}
-  m_LocalRotation: {x: 0.23746915, y: -0.000000008357095, z: 0.000000002042992, w: 0.9713951}
+  m_LocalRotation: {x: 0.23746915, y: 0.000000008357099, z: -0.0000000020429929, w: 0.9713951}
   m_LocalPosition: {x: 9.13, y: 13, z: -8.620001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1472,11 +1472,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1236049596, guid: 45ca3f25a64551a4fbd1f1e5f10d4d69, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000008357095
+      value: 0.000000008357099
       objectReference: {fileID: 0}
     - target: {fileID: 1236049596, guid: 45ca3f25a64551a4fbd1f1e5f10d4d69, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000002042992
+      value: -0.0000000020429929
       objectReference: {fileID: 0}
     - target: {fileID: 4069004195597418927, guid: 45ca3f25a64551a4fbd1f1e5f10d4d69,
         type: 3}
@@ -1611,7 +1611,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &2071611341
 Light:
   m_ObjectHideFlags: 0
