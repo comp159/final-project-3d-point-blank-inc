@@ -9,7 +9,10 @@ public class UIToggleScript : MonoBehaviour
     [SerializeField] private GameObject winText;
     [SerializeField] private GameObject playAgainButton;
     [SerializeField] private GameObject quitButton;
+    [SerializeField] private GameObject gameOverPanel;
     private UIManagementScript uis;
+
+    private PlayerController player;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +23,8 @@ public class UIToggleScript : MonoBehaviour
         uis = temp.GetComponent<UIManagementScript>();
         ui.SetActive(false);
         Time.timeScale = 1;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        gameOverPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -29,8 +34,17 @@ public class UIToggleScript : MonoBehaviour
         {
             PauseGame();
         }
+
+        if (player.get_health() <= 0)
+        {
+            GameOver();
+        }
     }
 
+    public void GameOver()
+    {
+        gameOverPanel.SetActive(true);
+    }
     public void PauseGame()
     {
         if (ui.activeInHierarchy)
