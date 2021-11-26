@@ -26,7 +26,7 @@ public class PowerUpScript : MonoBehaviour
             if (this.gameObject.CompareTag("Heal"))
             {
                 int temp = player.get_health();
-                temp = temp + 1;
+                temp = temp + 10;
                 player.set_health(temp);
                 Debug.Log("User healed 1 hp, now has "+ temp + " hp");
                 Destroy(this.gameObject);
@@ -35,7 +35,7 @@ public class PowerUpScript : MonoBehaviour
             if (this.gameObject.CompareTag("Stronk"))
             {
                 int temp = player.get_damage();
-                temp = temp + 1;
+                temp = temp + 5;
                 player.set_damage(temp);
                 Debug.Log("User buffed attack by 1, now has " + temp);
                 Destroy(this.gameObject);
@@ -44,7 +44,7 @@ public class PowerUpScript : MonoBehaviour
             if (this.gameObject.CompareTag("Schpeed"))
             {
                 float temp = player.get_movement_speed();
-                temp = temp + 1;
+                temp = temp + 5;
                 player.set_movement_speed(temp);
                 Debug.Log("User is faster by 1, now has " + temp + " speed");
                 Destroy(this.gameObject);
