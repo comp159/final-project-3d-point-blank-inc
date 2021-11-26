@@ -28,7 +28,7 @@ public class PowerUpScript : MonoBehaviour
                 int temp = player.get_health();
                 temp = temp + 1;
                 player.set_health(temp);
-                Debug.Log("User healed "+ temp + " hp");
+                Debug.Log("User healed 1 hp, now has "+ temp + " hp");
                 Destroy(this.gameObject);
             }
 
@@ -37,7 +37,7 @@ public class PowerUpScript : MonoBehaviour
                 int temp = player.get_damage();
                 temp = temp + 1;
                 player.set_damage(temp);
-                Debug.Log("User buffed attack by " + temp);
+                Debug.Log("User buffed attack by 1, now has " + temp);
                 Destroy(this.gameObject);
             }
 
@@ -46,7 +46,7 @@ public class PowerUpScript : MonoBehaviour
                 float temp = player.get_movement_speed();
                 temp = temp + 1;
                 player.set_movement_speed(temp);
-                Debug.Log("User is faster by " + temp);
+                Debug.Log("User is faster by 1, now has " + temp + " speed");
                 Destroy(this.gameObject);
             }
 
