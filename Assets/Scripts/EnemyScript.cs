@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,6 +9,7 @@ public class EnemyScript : MonoBehaviour
 {
     private float viewRadius = 99f;
     private NavMeshAgent currAgent;
+    private GameObject Player;
     private Transform currTarget;
     
     /* Enemy attributes */
@@ -20,23 +22,27 @@ public class EnemyScript : MonoBehaviour
     /* Actions to call before first frame */
     void Start()
     {
-        //currAgent = GetComponent<NavMeshAgent>();
-        //currTarget = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        currAgent = GetComponent<NavMeshAgent>();
+        currAgent.angularSpeed = 0;
+        Player = GameObject.FindGameObjectWithTag("Player");
+        currTarget = Player.GetComponent<Transform>();
+        
     }
 
     /* Continous updates per frame */
     void Update()
     {
-        //float distance = Vector3.Distance(currTarget.position, transform.position);
-        //if (distance <= viewRadius)
-        //{
-        //    currAgent.SetDestination(currTarget.position);
-        //}
+        float distance = Vector3.Distance(currTarget.position, transform.position);
+        if (distance <= viewRadius)
+        {
+            currAgent.SetDestination(currTarget.position);
+        }
     }
 
     private void FixedUpdate()
     {
-
+        transform.rotation = Quaternion.Slerp(transform.rotation, 
+            Quaternion.LookRotation(-1 * (Player.transform.position - transform.position)), 5* Time.deltaTime);
     }
     
     /* Getters and Setters */
