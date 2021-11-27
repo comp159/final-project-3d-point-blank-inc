@@ -14,7 +14,7 @@ public class EnemyScript : MonoBehaviour
     
     /* Enemy attributes */
     [SerializeField] private int health = 50;
-    [SerializeField] private float movement_speed = 2;
+    [SerializeField] private float movement_speed = 3.5f;
     [SerializeField] private int damage = 1;
     [SerializeField] private float attack_speed = 4f;
     [SerializeField] private int money_drop = 1;
@@ -24,6 +24,7 @@ public class EnemyScript : MonoBehaviour
     {
         currAgent = GetComponent<NavMeshAgent>();
         currAgent.angularSpeed = 0;
+        currAgent.speed = movement_speed;
         Player = GameObject.FindGameObjectWithTag("Player");
         currTarget = Player.GetComponent<Transform>();
         
