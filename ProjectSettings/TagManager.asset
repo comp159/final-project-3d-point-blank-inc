@@ -12,6 +12,9 @@ TagManager:
   - Shop
   - Player Spawner
   - Canvas
+  - Stairs
+  - Map
+  - MapController
   layers:
   - Default
   - TransparentFX

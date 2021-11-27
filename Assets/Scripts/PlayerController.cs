@@ -17,11 +17,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int damage = 1;
     [SerializeField] private float attack_speed = 2.5f;
     [SerializeField] private int schmoney = 0;
-    
+
+    private MapController mc;
     /* Actions to call before first frame */
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        mc = GameObject.FindGameObjectWithTag("MapController").GetComponent<MapController>();
     }
 
     /* Continous updates per frame */
@@ -123,5 +125,12 @@ public class PlayerController : MonoBehaviour
     {
         schmoney += money_added;
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Stairs"))
+        {
+            mc.DeleteCurrentFloor();
+        }
+    }
 }
