@@ -25,6 +25,7 @@ public class EnemyScript : MonoBehaviour
         currAgent = GetComponent<NavMeshAgent>();
         currAgent.angularSpeed = 0;
         currAgent.speed = movement_speed;
+        currAgent.acceleration = movement_speed * 2;
         Player = GameObject.FindGameObjectWithTag("Player");
         currTarget = Player.GetComponent<Transform>();
         
