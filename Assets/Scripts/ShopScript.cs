@@ -52,7 +52,7 @@ public class ShopScript : MonoBehaviour
         }
 		else if (player.get_cur_health() == player.get_base_health())
 		{
-			shopText.SetText("You know you're fully healed right? Maybe I should sell intelligence boosts too.");
+			shopText.SetText("You know you're fully healed right?\nMaybe I should sell intelligence boosts too...");
 		}
         else
         {
