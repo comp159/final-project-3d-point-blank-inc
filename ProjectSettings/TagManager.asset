@@ -12,6 +12,11 @@ TagManager:
   - Shop
   - Player Spawner
   - Canvas
+  - Stairs
+  - Map
+  - MapController
+  - EnemyRoom
+  - Terrain
   layers:
   - Default
   - TransparentFX
