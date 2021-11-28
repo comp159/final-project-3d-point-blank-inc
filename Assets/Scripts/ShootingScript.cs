@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ShootingScript : MonoBehaviour
 {
@@ -9,8 +10,10 @@ public class ShootingScript : MonoBehaviour
     
     /* Player-specific shooting characteristics */
 	[SerializeField] private PlayerController player;
-    [SerializeField] private int clip_size;
+    private int clip_size;
+	private int clip_remaining;
     private bool cooldown = false;
+	[SerializeField] private TextMeshProUGUI ammo_text;
 
 	/* Enemy variable, assuming player isn't the parent */
 	[SerializeField] private EnemyScript enemy;
@@ -29,8 +32,11 @@ public class ShootingScript : MonoBehaviour
         laser = GetComponent<LineRenderer>();
 		if (player_shooting)
         {
-            firing_speed = player.get_attack_speed();
+            firing_speed = player.get_reload_speed();
 			damage = player.get_damage();
+			clip_size = player.get_clip_size();
+			clip_remaining = clip_size;
+			ammo_text.text = "Current Ammo: " + clip_remaining + "/" + clip_size;
         } 
 		else 
 		{
@@ -42,11 +48,37 @@ public class ShootingScript : MonoBehaviour
     
     void FixedUpdate()
     {
-        /* If the player presses the button and $firing_speed has elapsed, initiate a player fire */
-        if (Input.GetMouseButtonDown(0) && !cooldown)
+        /* Player fires with a left click, and automatically reload upon emptying clip */
+        if (Input.GetMouseButtonDown(0) && !cooldown && player_shooting)
         {
-            StartCoroutine("player_firing");
+            clip_remaining--;
+			switch (player.get_shooting_type())
+			{
+				case 0:
+					StartCoroutine("player_firing");
+					break;
+				case 1:
+					StartCoroutine("player_burst");
+					break;
+				case 2:
+					StartCoroutine("player_spread");
+					break;
+				case 3:
+					//Piercing (TBD)
+					break;
+			}
+			if (clip_remaining <= 0)
+			{
+				StartCoroutine("player_reload");
+			}
         }
+
+		/* Allow player to manually reload */
+		if (Input.GetButtonDown("Fire3") && !cooldown && player_shooting)
+        {
+			StartCoroutine("player_reload");
+        }
+
     }
 
     IEnumerator enemy_firing()
@@ -58,7 +90,7 @@ public class ShootingScript : MonoBehaviour
             enemy_counter++;
             Debug.Log("Enemy shot: " + enemy_counter);
             
-            raycast("Player");
+            raycast("Player", Vector3.forward);
 			laser.enabled = true;
 			yield return new WaitForSeconds(0.5f);
 			laser.enabled = false;
@@ -72,25 +104,86 @@ public class ShootingScript : MonoBehaviour
         player_counter++;
         Debug.Log("Player shot: " + player_counter);
         
-        /* Search for enemy within raycast, and set cooldown for $firing_speed */
-        raycast("Enemy");
-        cooldown = true;
+        /* Search for enemy within raycast*/
+        raycast("Enemy", Vector3.forward);
         laser.enabled = true;
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.1f);
 		laser.enabled = false;
-        yield return new WaitForSeconds(firing_speed);
-        cooldown = false;
-        
+        ammo_text.text = "Current Ammo: " + clip_remaining + "/" + clip_size;
     }
 
-    private void raycast(string tag)
+	IEnumerator player_burst()
+    {
+        /* Testing */
+        player_counter++;
+        Debug.Log("Player shot: " + player_counter);
+        
+        /* Search for enemy within raycast*/
+        raycast("Enemy", Vector3.forward);
+        laser.enabled = true;
+		yield return new WaitForSeconds(0.1f);
+		laser.enabled = false;
+		yield return new WaitForSeconds(0.1f);
+
+		raycast("Enemy", Vector3.forward);
+        laser.enabled = true;
+		yield return new WaitForSeconds(0.1f);
+		laser.enabled = false;
+		yield return new WaitForSeconds(0.1f);
+
+		raycast("Enemy", Vector3.forward);
+        laser.enabled = true;
+		yield return new WaitForSeconds(0.1f);
+		laser.enabled = false;
+        ammo_text.text = "Current Ammo: " + clip_remaining + "/" + clip_size;
+    }
+
+	IEnumerator player_spread()
+    {
+        /* Testing */
+        player_counter++;
+        Debug.Log("Player shot: " + player_counter);
+        
+        /* Search for enemy within raycast*/
+        raycast("Enemy", Quaternion.Euler(0,-20,0) * Vector3.forward);
+        laser.enabled = true;
+		yield return new WaitForSeconds(0.1f);
+		laser.enabled = false;
+
+		raycast("Enemy", Vector3.forward);
+        laser.enabled = true;
+		yield return new WaitForSeconds(0.1f);
+		laser.enabled = false;
+
+		raycast("Enemy", Quaternion.Euler(0,20,0) * Vector3.forward);
+        laser.enabled = true;
+		yield return new WaitForSeconds(0.1f);
+		laser.enabled = false;
+        ammo_text.text = "Current Ammo: " + clip_remaining + "/" + clip_size;
+    }
+
+	IEnumerator player_reload()
+    {
+        /* Testing */
+        Debug.Log("Player reloading...");
+        
+        /* Prevent player from firing for their reload time (firing_speed) while ammo is restocked */
+        ammo_text.text = "Reloading...";
+		cooldown = true;
+        yield return new WaitForSeconds(firing_speed);
+		clip_remaining = clip_size;
+        cooldown = false;
+        ammo_text.text = "Current Ammo: " + clip_remaining + "/" + clip_size;
+    }
+
+    private void raycast(string tag, Vector3 shot)
     {
         /* Set raycast layers (as to avoid hitting colliders within environment) */
         RaycastHit hit;
         int layerMask = 1 << 3;
         layerMask = ~layerMask;
         laser.SetPosition(0, this.transform.position);
-        if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.forward), out hit, Mathf.Infinity, layerMask))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(shot), out hit, Mathf.Infinity, layerMask))
         {
             if (hit.collider.tag == tag)
             {
@@ -98,7 +191,7 @@ public class ShootingScript : MonoBehaviour
                 if (tag == "Player")
                 {
                     hit.collider.GetComponent<PlayerController>().deal_damage(damage);
-                    Debug.Log("Detected Player: Health now " + hit.collider.GetComponent<PlayerController>().get_health());
+                    Debug.Log("Detected Player: Health now " + hit.collider.GetComponent<PlayerController>().get_cur_health());
                 }
                 else if (tag == "Enemy")
                 {
@@ -112,6 +205,13 @@ public class ShootingScript : MonoBehaviour
 					}
                 }
             }
+			else if (hit.collider.tag == "Box")
+			{
+				/* Handle box being shot by either enemy or player*/
+				Debug.Log("Box has been shot");
+				//hit.collider.GetComponent<BoxScript>().spawn_powerup());
+				//Destroy(hit.collider.gameObject);
+			}
             else
             {
                 /* Raycast has missed it's intended target, and will not do anything */
@@ -124,8 +224,8 @@ public class ShootingScript : MonoBehaviour
 			Debug.Log("Missed");
         }
         
-        Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.forward) * 1000, Color.white);
-        laser.SetPosition (1, hit.point+transform.TransformDirection(-Vector3.forward)*50);
+        Debug.DrawRay(transform.position, transform.TransformDirection(shot) * 1000, Color.white);
+        laser.SetPosition (1, hit.point+transform.TransformDirection(shot)*50);
     }
 
 }

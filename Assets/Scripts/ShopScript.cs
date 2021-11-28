@@ -53,9 +53,9 @@ public class ShopScript : MonoBehaviour
         else
         {
             shopText.SetText("Hopefully that heals\nyour bullet wounds!");
-            int temp = player.get_health();
+            int temp = player.get_cur_health();
             temp = temp + 5;
-            player.set_health(temp);
+            player.set_cur_health(temp);
             player.add_money(-healCost);
         }
     }

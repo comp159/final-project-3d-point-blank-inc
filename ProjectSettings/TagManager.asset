@@ -16,11 +16,15 @@ TagManager:
   - Stronk
   - Schpeed
   - Reload
+  - Stairs
+  - Map
+  - MapController
+  - EnemyRoom
+  - Terrain
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
   - Water
   - UI
   - 

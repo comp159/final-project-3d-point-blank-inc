@@ -9,19 +9,44 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private EnemySpawner e;
     private Vector3 dir;
     private Vector3 temp_enemy;
-    private float speed = 10;
+    
     // Start is called before the first frame update
     /* Player attributes */
-    [SerializeField] private int health = 100;
+    [SerializeField] private int base_health = 100;
+    private int cur_health;
     [SerializeField] private float movement_speed = 4;
     [SerializeField] private int damage = 1;
-    [SerializeField] private float attack_speed = 2.5f;
+    [SerializeField] private float reload_speed = 2.5f;
     [SerializeField] private int schmoney = 0;
+    [SerializeField] private int clip_size = 10;
+    
+    /* Different types of shooting, implemented in ShootingScript
+     * 0 - Normal
+     * 1 - Burst
+     * 2 - Spread
+     * 3 - JFK (tbd)
+     */
+    [SerializeField] private int shooting_type = 0;
+    
+    public List<GameObject> barriers = new List<GameObject>();
+    private MapController mc;
     
     /* Actions to call before first frame */
     void Start()
     {
+        cur_health = base_health;
         controller = GetComponent<CharacterController>();
+        mc = GameObject.FindGameObjectWithTag("MapController").GetComponent<MapController>();
+    }
+    private void Update()
+    {
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+        {
+            for (int i = 0; i < barriers.Count; i++)
+            {
+                barriers[i].GetComponent<BoxCollider>().isTrigger = true;
+            }
+        }
     }
 
     /* Continous updates per frame */
@@ -36,27 +61,50 @@ public class PlayerController : MonoBehaviour
         
         /*
          * Rotation
-         * Found this nifty set of equations on the following forum post, made slight modifications to fit our needs:
-         * https://forum.unity.com/threads/rotating-an-object-to-face-the-mouse-location.21342/
+         * Found this nifty set of equations on the following Youtube video- it offered an improved accuracy compared to
+         * our initial rotation equation, and I made slight modifications to fit our specific game:
+         * https://www.youtube.com/watch?v=_S91dfkZ4oI
          */
-        float h = Input.mousePosition.x - Screen.width / 2;
-        float v = Input.mousePosition.y - Screen.height / 2;
-        float angle = -Mathf.Atan2(v,h) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler (0, angle-90, 0);
+
+        Plane player_plane = new Plane(Vector3.up, transform.position);
+        Ray ray = UnityEngine.Camera.main.ScreenPointToRay(Input.mousePosition);
+        float hitDist = 0f;
+
+        if (player_plane.Raycast(ray, out hitDist))
+        {
+            Vector3 target = ray.GetPoint(hitDist);
+            Quaternion target_rotation = Quaternion.LookRotation(target - transform.position);
+            target_rotation.x = 0;
+            target_rotation.z = 0;
+            transform.rotation = Quaternion.Slerp(transform.rotation, target_rotation, 10f * Time.deltaTime);
+        }
         
         /* Check Health */
-        if (health <= 0)
+        if (cur_health <= 0)
         {
             // Call some form of "game over" here
             Destroy(this.gameObject);
         }
         
+        /* Check for Player height */
+        if (transform.localPosition.y != 0.5f)
+        {
+            Vector3 coords = GetComponent<Transform>().localPosition;
+            coords.y = 0.5f;
+            transform.localPosition = coords;
+        }
+        
     }
 
     /* Getters and Setters */
-    public int get_health()
+    public int get_base_health()
     {
-        return health;
+        return base_health;
+    }
+
+    public int get_cur_health()
+    {
+        return cur_health;
     }
 
     public int get_damage()
@@ -69,9 +117,9 @@ public class PlayerController : MonoBehaviour
         return movement_speed;
     }
 
-    public float get_attack_speed()
+    public float get_reload_speed()
     {
-        return attack_speed;
+        return reload_speed;
     }
 
     public int get_money()
@@ -79,9 +127,24 @@ public class PlayerController : MonoBehaviour
         return schmoney;
     }
 
-    public void set_health(int input_health)
+    public int get_clip_size()
     {
-        health = input_health;
+        return clip_size;
+    }
+
+    public int get_shooting_type()
+    {
+        return shooting_type;
+    }
+
+    public void set_base_health(int input_health)
+    {
+        base_health = input_health;
+    }
+    
+    public void set_cur_health(int input_health)
+    {
+        cur_health = input_health;
     }
 
     public void set_damage(int input_damage)
@@ -94,9 +157,19 @@ public class PlayerController : MonoBehaviour
         movement_speed = input_movement_speed;
     }
 
-    public void set_attack_speed(float input_attack_speed)
+    public void set_reload_speed(float input_reload_speed)
     {
-        attack_speed = input_attack_speed;
+        reload_speed = input_reload_speed;
+    }
+
+    public void set_clip_size(int input_clip_size)
+    {
+        clip_size = input_clip_size;
+    }
+
+    public void set_shooting_type(int input_shooting)
+    {
+        shooting_type = input_shooting;
     }
     
     private void OnTriggerExit(Collider other)
@@ -104,8 +177,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy Spawner"))
         {
             temp_enemy = other.gameObject.transform.position;
-            e.SpawnEnemies(temp_enemy);
-            Destroy(other.gameObject);
+            e.SpawnEnemies(temp_enemy, barriers);
         }
     }
     public void set_money(int input_money)
@@ -116,12 +188,46 @@ public class PlayerController : MonoBehaviour
     /* Ease of access for specific functions */
     public void deal_damage(int damage_dealt)
     {
-        health -= damage_dealt;
+        cur_health -= damage_dealt;
     }
 
     public void add_money(int money_added)
     {
         schmoney += money_added;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Stairs"))
+        {
+            mc.DeleteCurrentFloor();
+        }
+        if (other.gameObject.CompareTag("EnemyRoom"))
+        {
+            Debug.Log("Hi");
+            UpdateBarriers(other.gameObject);
+        }
+    }
+
+    private void UpdateBarriers(GameObject g)
+    {
+        GetChildObject(g.transform, "Enemy Spawner");
+    }
     
+    public void GetChildObject(Transform parent, string _tag)
+    {
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            Transform child = parent.GetChild(i);
+            if (child.tag == _tag)
+            {
+                barriers.Add(child.gameObject);
+                Debug.Log(child.gameObject.name);
+            }
+            if (child.childCount > 0)
+            {
+                GetChildObject(child, _tag);
+            }
+        }
+    }
 }
