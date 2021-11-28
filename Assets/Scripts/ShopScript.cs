@@ -44,25 +44,65 @@ public class ShopScript : MonoBehaviour
         buyReloadText.text = "$" + reloadCost;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void BuyHeal()
     {
-        if (player.get_money() < 5)
+        if (player.get_money() < healCost)
         {
-            shopText.SetText("Oof, not enough.\nYou need $" + (5 - player.get_money()) + " more" );
+            shopText.SetText("Oof, not enough.\nYou need $" + (healCost - player.get_money()) + " more" );
         }
         else
         {
-            shopText.SetText("Enjoy your purchase!");
+            shopText.SetText("Hopefully that heals\nyour bullet wounds!");
             int temp = player.get_health();
             temp = temp + 5;
             player.set_health(temp);
-            player.add_money(-5);
+            player.add_money(-healCost);
+        }
+    }
+
+    public void BuyAttack()
+    {
+        if (player.get_money() < attackCost)
+        {
+            shopText.SetText("Oof, not enough.\nYou need $" + (attackCost - player.get_money()) + " more" );
+        }
+        else
+        {
+            shopText.SetText("Go get those gains!");
+            int temp = player.get_damage();
+            temp = temp + 5;
+            player.set_damage(temp);
+            player.add_money(-attackCost);
+        }
+    }
+
+    public void BuySpeed()
+    {
+        if (player.get_money() < speedCost)
+        {
+            shopText.SetText("Oof, not enough.\nYou need $" + (speedCost - player.get_money()) + " more" );
+        }
+        else
+        {
+            shopText.SetText("Enjoy the clout!");
+            float temp = player.get_movement_speed();
+            temp = temp + 5;
+            player.set_movement_speed(temp);
+            player.add_money(-speedCost);
+        }
+    }
+
+    public void BuyReload()
+    {
+        if (player.get_money() < reloadCost)
+        {
+            shopText.SetText("Oof, not enough.\nYou need $" + (reloadCost - player.get_money()) + " more" );
+        }
+        else
+        {
+            shopText.SetText("Thanks for your patronage!\nYou look all jittery now!");
+            //TODO add calculations to increase reload speed
+            player.add_money(-reloadCost);
         }
     }
 }
