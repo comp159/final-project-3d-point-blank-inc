@@ -26,9 +26,9 @@ public class PowerUpScript : MonoBehaviour
             if (this.gameObject.CompareTag("Heal"))
             {
                 int temp = player.get_health();
-                temp = temp + 10;
+                temp = temp + 5;
                 player.set_health(temp);
-                Debug.Log("User healed 1 hp, now has "+ temp + " hp");
+                Debug.Log("User healed 5 hp, now has "+ temp + " hp");
                 Destroy(this.gameObject);
             }
 
