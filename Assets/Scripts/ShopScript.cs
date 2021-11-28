@@ -50,6 +50,10 @@ public class ShopScript : MonoBehaviour
         {
             shopText.SetText("Oof, not enough.\nYou need $" + (healCost - player.get_money()) + " more" );
         }
+		else if (player.get_cur_health() == player.get_base_health())
+		{
+			shopText.SetText("You know you're fully healed right? Maybe I should sell intelligence boosts too.");
+		}
         else
         {
             shopText.SetText("Hopefully that heals\nyour bullet wounds!");
