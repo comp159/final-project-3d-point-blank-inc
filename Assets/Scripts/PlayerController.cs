@@ -64,6 +64,14 @@ public class PlayerController : MonoBehaviour
             Destroy(this.gameObject);
         }
         
+        /* Check for Player height */
+        if (transform.localPosition.y != 0.5f)
+        {
+            Vector3 coords = GetComponent<Transform>().localPosition;
+            coords.y = 0.5f;
+            transform.localPosition = coords;
+        }
+        
     }
 
     /* Getters and Setters */
