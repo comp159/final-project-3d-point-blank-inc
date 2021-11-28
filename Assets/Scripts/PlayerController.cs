@@ -20,6 +20,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int schmoney = 0;
     [SerializeField] private int clip_size = 10;
     
+    /* Different types of shooting, implemented in ShootingScript
+     * 0 - Normal
+     * 1 - Burst
+     * 2 - Spread
+     * 3 - JFK (tbd)
+     */
+    [SerializeField] private int shooting_type = 0;
+    
     /* Actions to call before first frame */
     void Start()
     {
@@ -110,6 +118,11 @@ public class PlayerController : MonoBehaviour
         return clip_size;
     }
 
+    public int get_shooting_type()
+    {
+        return shooting_type;
+    }
+
     public void set_base_health(int input_health)
     {
         base_health = input_health;
@@ -138,6 +151,11 @@ public class PlayerController : MonoBehaviour
     public void set_clip_size(int input_clip_size)
     {
         clip_size = input_clip_size;
+    }
+
+    public void set_shooting_type(int input_shooting)
+    {
+        shooting_type = input_shooting;
     }
     
     private void OnTriggerExit(Collider other)

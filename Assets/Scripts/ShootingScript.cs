@@ -52,7 +52,21 @@ public class ShootingScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !cooldown && player_shooting)
         {
             clip_remaining--;
-			StartCoroutine("player_firing");
+			switch (player.get_shooting_type())
+			{
+				case 0:
+					StartCoroutine("player_firing");
+					break;
+				case 1:
+					StartCoroutine("player_burst");
+					break;
+				case 2:
+					StartCoroutine("player_spread");
+					break;
+				case 3:
+					//Piercing (TBD)
+					break;
+			}
 			if (clip_remaining <= 0)
 			{
 				StartCoroutine("player_reload");
@@ -76,7 +90,7 @@ public class ShootingScript : MonoBehaviour
             enemy_counter++;
             Debug.Log("Enemy shot: " + enemy_counter);
             
-            raycast("Player");
+            raycast("Player", Vector3.forward);
 			laser.enabled = true;
 			yield return new WaitForSeconds(0.5f);
 			laser.enabled = false;
@@ -91,7 +105,57 @@ public class ShootingScript : MonoBehaviour
         Debug.Log("Player shot: " + player_counter);
         
         /* Search for enemy within raycast*/
-        raycast("Enemy");
+        raycast("Enemy", Vector3.forward);
+        laser.enabled = true;
+		yield return new WaitForSeconds(0.1f);
+		laser.enabled = false;
+        ammo_text.text = "Current Ammo: " + clip_remaining + "/" + clip_size;
+    }
+
+	IEnumerator player_burst()
+    {
+        /* Testing */
+        player_counter++;
+        Debug.Log("Player shot: " + player_counter);
+        
+        /* Search for enemy within raycast*/
+        raycast("Enemy", Vector3.forward);
+        laser.enabled = true;
+		yield return new WaitForSeconds(0.1f);
+		laser.enabled = false;
+		yield return new WaitForSeconds(0.1f);
+
+		raycast("Enemy", Vector3.forward);
+        laser.enabled = true;
+		yield return new WaitForSeconds(0.1f);
+		laser.enabled = false;
+		yield return new WaitForSeconds(0.1f);
+
+		raycast("Enemy", Vector3.forward);
+        laser.enabled = true;
+		yield return new WaitForSeconds(0.1f);
+		laser.enabled = false;
+        ammo_text.text = "Current Ammo: " + clip_remaining + "/" + clip_size;
+    }
+
+	IEnumerator player_spread()
+    {
+        /* Testing */
+        player_counter++;
+        Debug.Log("Player shot: " + player_counter);
+        
+        /* Search for enemy within raycast*/
+        raycast("Enemy", Quaternion.Euler(0,-20,0) * Vector3.forward);
+        laser.enabled = true;
+		yield return new WaitForSeconds(0.1f);
+		laser.enabled = false;
+
+		raycast("Enemy", Vector3.forward);
+        laser.enabled = true;
+		yield return new WaitForSeconds(0.1f);
+		laser.enabled = false;
+
+		raycast("Enemy", Quaternion.Euler(0,20,0) * Vector3.forward);
         laser.enabled = true;
 		yield return new WaitForSeconds(0.1f);
 		laser.enabled = false;
@@ -112,14 +176,14 @@ public class ShootingScript : MonoBehaviour
         ammo_text.text = "Current Ammo: " + clip_remaining + "/" + clip_size;
     }
 
-    private void raycast(string tag)
+    private void raycast(string tag, Vector3 shot)
     {
         /* Set raycast layers (as to avoid hitting colliders within environment) */
         RaycastHit hit;
         int layerMask = 1 << 3;
         layerMask = ~layerMask;
         laser.SetPosition(0, this.transform.position);
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(shot), out hit, Mathf.Infinity, layerMask))
         {
             if (hit.collider.tag == tag)
             {
@@ -160,8 +224,8 @@ public class ShootingScript : MonoBehaviour
 			Debug.Log("Missed");
         }
         
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
-        laser.SetPosition (1, hit.point+transform.TransformDirection(Vector3.forward)*50);
+        Debug.DrawRay(transform.position, transform.TransformDirection(shot) * 1000, Color.white);
+        laser.SetPosition (1, hit.point+transform.TransformDirection(shot)*50);
     }
 
 }
