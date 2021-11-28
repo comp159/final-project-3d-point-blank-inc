@@ -9,18 +9,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private EnemySpawner e;
     private Vector3 dir;
     private Vector3 temp_enemy;
-    private float speed = 10;
+    
     // Start is called before the first frame update
     /* Player attributes */
-    [SerializeField] private int health = 100;
+    [SerializeField] private int base_health = 100;
+    private int cur_health;
     [SerializeField] private float movement_speed = 4;
     [SerializeField] private int damage = 1;
-    [SerializeField] private float attack_speed = 2.5f;
+    [SerializeField] private float reload_speed = 2.5f;
     [SerializeField] private int schmoney = 0;
+    [SerializeField] private int clip_size = 10;
     
     /* Actions to call before first frame */
     void Start()
     {
+        cur_health = base_health;
         controller = GetComponent<CharacterController>();
     }
 
@@ -45,7 +48,7 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler (0, angle-90, 0);
         
         /* Check Health */
-        if (health <= 0)
+        if (cur_health <= 0)
         {
             // Call some form of "game over" here
             Destroy(this.gameObject);
@@ -54,9 +57,14 @@ public class PlayerController : MonoBehaviour
     }
 
     /* Getters and Setters */
-    public int get_health()
+    public int get_base_health()
     {
-        return health;
+        return base_health;
+    }
+
+    public int get_cur_health()
+    {
+        return cur_health;
     }
 
     public int get_damage()
@@ -69,9 +77,9 @@ public class PlayerController : MonoBehaviour
         return movement_speed;
     }
 
-    public float get_attack_speed()
+    public float get_reload_speed()
     {
-        return attack_speed;
+        return reload_speed;
     }
 
     public int get_money()
@@ -79,9 +87,19 @@ public class PlayerController : MonoBehaviour
         return schmoney;
     }
 
-    public void set_health(int input_health)
+    public int get_clip_size()
     {
-        health = input_health;
+        return clip_size;
+    }
+
+    public void set_base_health(int input_health)
+    {
+        base_health = input_health;
+    }
+    
+    public void set_cur_health(int input_health)
+    {
+        cur_health = input_health;
     }
 
     public void set_damage(int input_damage)
@@ -94,9 +112,14 @@ public class PlayerController : MonoBehaviour
         movement_speed = input_movement_speed;
     }
 
-    public void set_attack_speed(float input_attack_speed)
+    public void set_reload_speed(float input_reload_speed)
     {
-        attack_speed = input_attack_speed;
+        reload_speed = input_reload_speed;
+    }
+
+    public void set_clip_size(int input_clip_size)
+    {
+        clip_size = input_clip_size;
     }
     
     private void OnTriggerExit(Collider other)
@@ -116,7 +139,7 @@ public class PlayerController : MonoBehaviour
     /* Ease of access for specific functions */
     public void deal_damage(int damage_dealt)
     {
-        health -= damage_dealt;
+        cur_health -= damage_dealt;
     }
 
     public void add_money(int money_added)

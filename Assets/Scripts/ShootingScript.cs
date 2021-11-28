@@ -9,7 +9,8 @@ public class ShootingScript : MonoBehaviour
     
     /* Player-specific shooting characteristics */
 	[SerializeField] private PlayerController player;
-    [SerializeField] private int clip_size;
+    private int clip_size;
+	private int clip_remaining;
     private bool cooldown = false;
 
 	/* Enemy variable, assuming player isn't the parent */
@@ -29,8 +30,10 @@ public class ShootingScript : MonoBehaviour
         laser = GetComponent<LineRenderer>();
 		if (player_shooting)
         {
-            firing_speed = player.get_attack_speed();
+            firing_speed = player.get_reload_speed();
 			damage = player.get_damage();
+			clip_size = player.get_clip_size();
+			clip_remaining = clip_size;
         } 
 		else 
 		{
@@ -42,11 +45,23 @@ public class ShootingScript : MonoBehaviour
     
     void FixedUpdate()
     {
-        /* If the player presses the button and $firing_speed has elapsed, initiate a player fire */
-        if (Input.GetMouseButtonDown(0) && !cooldown)
+        /* Player fires with a left click, and automatically reload upon emptying clip */
+        if (Input.GetMouseButtonDown(0) && !cooldown && player_shooting)
         {
-            StartCoroutine("player_firing");
+            clip_remaining--;
+			StartCoroutine("player_firing");
+			if (clip_remaining <= 0)
+			{
+				StartCoroutine("player_reload");
+			}
         }
+
+		/* Allow player to manually reload */
+		if (Input.GetButtonDown("Fire3") && !cooldown && player_shooting)
+        {
+			StartCoroutine("player_reload");
+        }
+
     }
 
     IEnumerator enemy_firing()
@@ -72,13 +87,23 @@ public class ShootingScript : MonoBehaviour
         player_counter++;
         Debug.Log("Player shot: " + player_counter);
         
-        /* Search for enemy within raycast, and set cooldown for $firing_speed */
+        /* Search for enemy within raycast*/
         raycast("Enemy");
-        cooldown = true;
         laser.enabled = true;
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.1f);
 		laser.enabled = false;
+        
+    }
+
+	IEnumerator player_reload()
+    {
+        /* Testing */
+        Debug.Log("Player reloading...");
+        
+        /* Prevent player from firing for their reload time (firing_speed) while ammo is restocked */
+        cooldown = true;
         yield return new WaitForSeconds(firing_speed);
+		clip_remaining = clip_size;
         cooldown = false;
         
     }
@@ -98,7 +123,7 @@ public class ShootingScript : MonoBehaviour
                 if (tag == "Player")
                 {
                     hit.collider.GetComponent<PlayerController>().deal_damage(damage);
-                    Debug.Log("Detected Player: Health now " + hit.collider.GetComponent<PlayerController>().get_health());
+                    Debug.Log("Detected Player: Health now " + hit.collider.GetComponent<PlayerController>().get_cur_health());
                 }
                 else if (tag == "Enemy")
                 {

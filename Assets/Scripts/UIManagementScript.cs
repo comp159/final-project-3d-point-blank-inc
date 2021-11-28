@@ -44,9 +44,10 @@ public class UIManagementScript : MonoBehaviour
         moveSpdText = player_stats.Find("Movement Speed Text").GetComponent<TextMeshProUGUI>();
 
         schmoney = player.get_money();
-        curHealth = player.get_health();
+        maxHealth = player.get_base_health();
+        curHealth = player.get_cur_health();
         atkPower = player.get_damage();
-        reloadSpeed = (int)player.get_attack_speed();
+        reloadSpeed = (int)player.get_reload_speed();
         moveSpd = (int)player.get_movement_speed();
         
         floorNumText.text = floorPrefix + floorNum;
@@ -85,7 +86,7 @@ public class UIManagementScript : MonoBehaviour
 
     private void UpdateHealth()
     {
-        curHealth = player.get_health();
+        curHealth = player.get_cur_health();
         healthText.SetText(healthPrefix + curHealth + "/" + maxHealth);
     }
 
@@ -97,7 +98,7 @@ public class UIManagementScript : MonoBehaviour
 
     private void UpdateAtkSpd()
     {
-        reloadSpeed = (int)player.get_attack_speed();
+        reloadSpeed = (int)player.get_reload_speed();
         reloadSpeedText.SetText(reloadSpeedPrefix + reloadSpeed);
     }
 
