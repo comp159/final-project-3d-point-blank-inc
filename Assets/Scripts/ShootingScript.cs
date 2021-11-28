@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ShootingScript : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class ShootingScript : MonoBehaviour
     private int clip_size;
 	private int clip_remaining;
     private bool cooldown = false;
+	[SerializeField] private TextMeshProUGUI ammo_text;
 
 	/* Enemy variable, assuming player isn't the parent */
 	[SerializeField] private EnemyScript enemy;
@@ -34,6 +36,7 @@ public class ShootingScript : MonoBehaviour
 			damage = player.get_damage();
 			clip_size = player.get_clip_size();
 			clip_remaining = clip_size;
+			ammo_text.text = "Current Ammo: " + clip_remaining + "/" + clip_size;
         } 
 		else 
 		{
@@ -92,7 +95,7 @@ public class ShootingScript : MonoBehaviour
         laser.enabled = true;
 		yield return new WaitForSeconds(0.1f);
 		laser.enabled = false;
-        
+        ammo_text.text = "Current Ammo: " + clip_remaining + "/" + clip_size;
     }
 
 	IEnumerator player_reload()
@@ -101,11 +104,12 @@ public class ShootingScript : MonoBehaviour
         Debug.Log("Player reloading...");
         
         /* Prevent player from firing for their reload time (firing_speed) while ammo is restocked */
-        cooldown = true;
+        ammo_text.text = "Reloading...";
+		cooldown = true;
         yield return new WaitForSeconds(firing_speed);
 		clip_remaining = clip_size;
         cooldown = false;
-        
+        ammo_text.text = "Current Ammo: " + clip_remaining + "/" + clip_size;
     }
 
     private void raycast(string tag)
