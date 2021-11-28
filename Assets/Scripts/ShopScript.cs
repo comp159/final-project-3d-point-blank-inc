@@ -8,9 +8,10 @@ public class ShopScript : MonoBehaviour
 {
     private int healCost, attackCost, speedCost, reloadCost;
     private TextMeshProUGUI shopText;
+    private Text buyHealText, buyAttackText, buySpeedText, buyReloadText;
     private PlayerController player;
-    private TextMeshProUGUI buyHeal, buyAttack, buyMoveSpeed, buyReloadSpeed;
-    
+    private Button buyHeal, buyAttack, buyMoveSpeed, buyReloadSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,20 +25,23 @@ public class ShopScript : MonoBehaviour
         GameObject temp = GameObject.FindGameObjectWithTag("Player");
         player = temp.GetComponent<PlayerController>();
 
-        buyHeal = buyingButtons.Find("Buy Heal").Find("Buy Heal Price").GetComponent<TextMeshProUGUI>();
-        buyAttack = buyingButtons.Find("Buy Attack").Find("Buy Attack Price").GetComponent<TextMeshProUGUI>();
-        buyMoveSpeed = buyingButtons.Find("Buy MoveSpeed").Find("Buy Move Speed Price").GetComponent<TextMeshProUGUI>();
-        buyReloadSpeed = buyingButtons.Find("Buy ReloadSpeed").Find("Buy Reload Speed Price").GetComponent<TextMeshProUGUI>();
+        buyHeal = buyingButtons.Find("Buy Heal").GetComponent<Button>();
+        buyAttack = buyingButtons.Find("Buy Attack").GetComponent<Button>();
+        buyMoveSpeed = buyingButtons.Find("Buy MoveSpeed").GetComponent<Button>();
+        buyReloadSpeed = buyingButtons.Find("Buy ReloadSpeed").GetComponent<Button>();
         
         shopText = transform.Find("Shop Text Background").Find("Shop Text").GetComponent<TextMeshProUGUI>();
         shopText.text = "Welcome! Buy something \nor get out.";
-        
-        buyHeal.text = "$"+ healCost;
-        buyAttack.SetText("$" + attackCost);
-        buyMoveSpeed.SetText("$" + speedCost);
-        buyReloadSpeed.SetText("$" + reloadCost);
-        
-        
+
+        buyHealText = buyHeal.GetComponentInChildren<Text>();
+        buyAttackText = buyAttack.GetComponentInChildren<Text>();
+        buySpeedText = buyMoveSpeed.GetComponentInChildren<Text>();
+        buyReloadText = buyReloadSpeed.GetComponentInChildren<Text>();
+
+        buyHealText.text = "$" + healCost;
+        buyAttackText.text = "S" + attackCost;
+        buySpeedText.text = "$" + speedCost;
+        buyReloadText.text = "$" + reloadCost;
     }
 
     // Update is called once per frame
