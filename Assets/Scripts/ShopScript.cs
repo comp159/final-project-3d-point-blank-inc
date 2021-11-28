@@ -31,7 +31,7 @@ public class ShopScript : MonoBehaviour
         buyReloadSpeed = buyingButtons.Find("Buy ReloadSpeed").GetComponent<Button>();
         
         shopText = transform.Find("Shop Text Background").Find("Shop Text").GetComponent<TextMeshProUGUI>();
-        shopText.text = "Welcome! Buy something \nor get out.";
+        Welcome();
 
         buyHealText = buyHeal.GetComponentInChildren<Text>();
         buyAttackText = buyAttack.GetComponentInChildren<Text>();
@@ -58,6 +58,11 @@ public class ShopScript : MonoBehaviour
             player.set_cur_health(temp);
             player.add_money(-healCost);
         }
+    }
+
+    public void Welcome()
+    {
+        shopText.text = "Welcome! Buy something \nor get out.";
     }
 
     public void BuyAttack()
