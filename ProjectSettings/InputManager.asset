@@ -217,10 +217,10 @@ InputManager:
     m_Name: Fire3
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: joystick button 2
-    altNegativeButton: 
-    altPositiveButton: 
+    negativeButton: r
+    positiveButton: r
+    altNegativeButton: r
+    altPositiveButton: r
     gravity: 1000
     dead: 0.001
     sensitivity: 1000

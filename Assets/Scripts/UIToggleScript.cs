@@ -35,7 +35,7 @@ public class UIToggleScript : MonoBehaviour
             PauseGame();
         }
 
-        if (player.get_health() <= 0)
+        if (player.get_cur_health() <= 0)
         {
             GameOver();
         }
