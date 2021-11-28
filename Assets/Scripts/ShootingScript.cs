@@ -119,7 +119,7 @@ public class ShootingScript : MonoBehaviour
         int layerMask = 1 << 3;
         layerMask = ~layerMask;
         laser.SetPosition(0, this.transform.position);
-        if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.forward), out hit, Mathf.Infinity, layerMask))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
         {
             if (hit.collider.tag == tag)
             {
@@ -160,8 +160,8 @@ public class ShootingScript : MonoBehaviour
 			Debug.Log("Missed");
         }
         
-        Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.forward) * 1000, Color.white);
-        laser.SetPosition (1, hit.point+transform.TransformDirection(-Vector3.forward)*50);
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+        laser.SetPosition (1, hit.point+transform.TransformDirection(Vector3.forward)*50);
     }
 
 }

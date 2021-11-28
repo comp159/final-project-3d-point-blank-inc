@@ -39,13 +39,23 @@ public class PlayerController : MonoBehaviour
         
         /*
          * Rotation
-         * Found this nifty set of equations on the following forum post, made slight modifications to fit our needs:
-         * https://forum.unity.com/threads/rotating-an-object-to-face-the-mouse-location.21342/
+         * Found this nifty set of equations on the following Youtube video- it offered an improved accuracy compared to
+         * our initial rotation equation, and I made slight modifications to fit our specific game:
+         * https://www.youtube.com/watch?v=_S91dfkZ4oI
          */
-        float h = Input.mousePosition.x - Screen.width / 2;
-        float v = Input.mousePosition.y - Screen.height / 2;
-        float angle = -Mathf.Atan2(v,h) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler (0, angle-90, 0);
+
+        Plane player_plane = new Plane(Vector3.up, transform.position);
+        Ray ray = UnityEngine.Camera.main.ScreenPointToRay(Input.mousePosition);
+        float hitDist = 0f;
+
+        if (player_plane.Raycast(ray, out hitDist))
+        {
+            Vector3 target = ray.GetPoint(hitDist);
+            Quaternion target_rotation = Quaternion.LookRotation(target - transform.position);
+            target_rotation.x = 0;
+            target_rotation.z = 0;
+            transform.rotation = Quaternion.Slerp(transform.rotation, target_rotation, 10f * Time.deltaTime);
+        }
         
         /* Check Health */
         if (cur_health <= 0)
