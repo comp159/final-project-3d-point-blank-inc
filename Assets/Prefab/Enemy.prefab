@@ -597,12 +597,12 @@ PrefabInstance:
     - target: {fileID: 1129865852473102459, guid: 5103a9b94c956d0cab0b98cbce018857,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 1129865852473102459, guid: 5103a9b94c956d0cab0b98cbce018857,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.75
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1129865852473102459, guid: 5103a9b94c956d0cab0b98cbce018857,
         type: 3}
@@ -653,6 +653,16 @@ PrefabInstance:
         type: 3}
       propertyPath: player_shooting
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7199532247856057391, guid: 5103a9b94c956d0cab0b98cbce018857,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7199532247856057391, guid: 5103a9b94c956d0cab0b98cbce018857,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7199532247856057391, guid: 5103a9b94c956d0cab0b98cbce018857,
         type: 3}
