@@ -11,7 +11,7 @@ public class UIToggleScript : MonoBehaviour
     [SerializeField] private GameObject quitButton;
     [SerializeField] private GameObject gameOverPanel;
     private UIManagementScript uis;
-
+    [SerializeField] private GameObject ShopUI;
     private PlayerController player;
     // Start is called before the first frame update
     void Start()
@@ -47,16 +47,19 @@ public class UIToggleScript : MonoBehaviour
     }
     public void PauseGame()
     {
-        if (ui.activeInHierarchy)
+        if (ShopUI.activeInHierarchy == false)
         {
-            ui.SetActive(false);
-            Time.timeScale = 1;
-        }
-        else
-        {
-            ui.SetActive(true);
-            uis.UpdateAll();
-            Time.timeScale = 0;
+            if (ui.activeInHierarchy)
+            {
+                ui.SetActive(false);
+                Time.timeScale = 1;
+            }
+            else
+            {
+                ui.SetActive(true);
+                uis.UpdateAll();
+                Time.timeScale = 0;
+            }
         }
     }
 

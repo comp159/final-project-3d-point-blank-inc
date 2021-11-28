@@ -79,11 +79,14 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, target_rotation, 10f * Time.deltaTime);
         }
         
-        /* Check Health */
+        /* Health checks */
         if (cur_health <= 0)
         {
             // Call some form of "game over" here
             Destroy(this.gameObject);
+        } else if (cur_health > base_health)
+        {
+            cur_health = base_health;
         }
         
         /* Check for Player height */

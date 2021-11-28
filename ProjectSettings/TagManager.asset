@@ -12,6 +12,10 @@ TagManager:
   - Shop
   - Player Spawner
   - Canvas
+  - Heal
+  - Stronk
+  - Schpeed
+  - Reload
   - Stairs
   - Map
   - MapController
@@ -21,7 +25,6 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
   - Water
   - UI
   - 
