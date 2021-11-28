@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3.046941, z: -6.7815175}
+  m_FollowOffset: {x: 0, y: 13, z: -25}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -118,8 +118,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1236049595}
-  m_LocalRotation: {x: 0.20957094, y: 0.000000016824288, z: -0.0000000036059575, w: 0.97779346}
-  m_LocalPosition: {x: 0, y: 5.078235, z: -11.302529}
+  m_LocalRotation: {x: 0.23746915, y: 0.000000008357099, z: -0.0000000020429929, w: 0.9713951}
+  m_LocalPosition: {x: 0, y: 6.5, z: -12.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 560877300}
@@ -190,7 +190,7 @@ Transform:
   m_GameObject: {fileID: 4860036252970920472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 1236049596}
   - {fileID: 1129865853049486488}
@@ -253,10 +253,10 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2.8
+  m_Height: 2.5
   m_Radius: 0.6
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.01
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.2, z: 0}
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   e: {fileID: 0}
   health: 100
-  movement_speed: 4
+  movement_speed: 15
   damage: 25
   attack_speed: 2.5
   schmoney: 0

@@ -238,7 +238,7 @@ PrefabInstance:
     - target: {fileID: 3110937333283675389, guid: 5640def9868a9794094eb78d3fc107f7,
         type: 3}
       propertyPath: m_TagString
-      value: Enemy Spawner
+      value: EnemyRoom
       objectReference: {fileID: 0}
     - target: {fileID: 6877357943581077007, guid: 5640def9868a9794094eb78d3fc107f7,
         type: 3}
@@ -413,7 +413,7 @@ PrefabInstance:
     - target: {fileID: 2218673820313424705, guid: 81b5dd03c21387c4ea8ba601b6b96e64,
         type: 3}
       propertyPath: m_TagString
-      value: Enemy Spawner
+      value: EnemyRoom
       objectReference: {fileID: 0}
     - target: {fileID: 5049508549054439961, guid: 81b5dd03c21387c4ea8ba601b6b96e64,
         type: 3}
@@ -633,7 +633,7 @@ PrefabInstance:
     - target: {fileID: 2218673820313424705, guid: 81b5dd03c21387c4ea8ba601b6b96e64,
         type: 3}
       propertyPath: m_TagString
-      value: Enemy Spawner
+      value: EnemyRoom
       objectReference: {fileID: 0}
     - target: {fileID: 2780046994995979936, guid: 81b5dd03c21387c4ea8ba601b6b96e64,
         type: 3}
@@ -998,7 +998,7 @@ PrefabInstance:
     - target: {fileID: 2218673820313424705, guid: 81b5dd03c21387c4ea8ba601b6b96e64,
         type: 3}
       propertyPath: m_TagString
-      value: Enemy Spawner
+      value: EnemyRoom
       objectReference: {fileID: 0}
     - target: {fileID: 2780046994995979936, guid: 81b5dd03c21387c4ea8ba601b6b96e64,
         type: 3}
