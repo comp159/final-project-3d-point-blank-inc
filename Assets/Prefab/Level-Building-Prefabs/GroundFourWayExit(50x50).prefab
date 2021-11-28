@@ -779,9 +779,10 @@ GameObject:
   - component: {fileID: 5682173397265561660}
   - component: {fileID: 8113919688607663996}
   - component: {fileID: 3520186530840320256}
+  - component: {fileID: 4928133149105715286}
   m_Layer: 0
   m_Name: GroundFourWayExit(50x50)
-  m_TagString: Untagged
+  m_TagString: EnemyRoom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -852,3 +853,16 @@ TerrainCollider:
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: 6871192d82656d24382365e4d14f40a5, type: 2}
   m_EnableTreeColliders: 1
+--- !u!65 &4928133149105715286
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8971041535798425760}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 50.849854, y: 7.0282006, z: 50.537727}
+  m_Center: {x: 24.924927, y: 3.0141003, z: 24.768864}

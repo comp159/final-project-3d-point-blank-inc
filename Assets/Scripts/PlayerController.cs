@@ -17,11 +17,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int damage = 1;
     [SerializeField] private float attack_speed = 2.5f;
     [SerializeField] private int schmoney = 0;
-    
+    public List<GameObject> barriers = new List<GameObject>();
+    private MapController mc;
     /* Actions to call before first frame */
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        mc = GameObject.FindGameObjectWithTag("MapController").GetComponent<MapController>();
+    }
+    private void Update()
+    {
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+        {
+            for (int i = 0; i < barriers.Count; i++)
+            {
+                barriers[i].GetComponent<BoxCollider>().isTrigger = true;
+            }
+        }
     }
 
     /* Continous updates per frame */
@@ -104,8 +116,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy Spawner"))
         {
             temp_enemy = other.gameObject.transform.position;
-            e.SpawnEnemies(temp_enemy);
-            Destroy(other.gameObject);
+            e.SpawnEnemies(temp_enemy, barriers);
         }
     }
     public void set_money(int input_money)
@@ -123,5 +134,39 @@ public class PlayerController : MonoBehaviour
     {
         schmoney += money_added;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Stairs"))
+        {
+            mc.DeleteCurrentFloor();
+        }
+        if (other.gameObject.CompareTag("EnemyRoom"))
+        {
+            Debug.Log("Hi");
+            UpdateBarriers(other.gameObject);
+        }
+    }
+
+    private void UpdateBarriers(GameObject g)
+    {
+        GetChildObject(g.transform, "Enemy Spawner");
+    }
     
+    public void GetChildObject(Transform parent, string _tag)
+    {
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            Transform child = parent.GetChild(i);
+            if (child.tag == _tag)
+            {
+                barriers.Add(child.gameObject);
+                Debug.Log(child.gameObject.name);
+            }
+            if (child.childCount > 0)
+            {
+                GetChildObject(child, _tag);
+            }
+        }
+    }
 }
