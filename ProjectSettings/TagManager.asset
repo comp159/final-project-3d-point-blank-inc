@@ -6,9 +6,12 @@ TagManager:
   tags:
   - Enemy
   - PauseScreen
+  - TitleScreenEndButton
+  - TitleScreenStartButton
   - Enemy Spawner
   - Shop
   - Player Spawner
+  - Canvas
   layers:
   - Default
   - TransparentFX
