@@ -106,7 +106,9 @@ public class ShopScript : MonoBehaviour
         else
         {
             shopText.SetText("Thanks for your patronage!\nYou look all jittery now!");
-            //TODO add calculations to increase reload speed
+            float temp = player.get_reload_speed();
+            temp = temp + 1;
+            player.set_movement_speed(temp);
             player.add_money(-reloadCost);
         }
     }

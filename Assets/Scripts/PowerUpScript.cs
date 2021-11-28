@@ -52,7 +52,10 @@ public class PowerUpScript : MonoBehaviour
 
             if (this.gameObject.CompareTag("Reload"))
             {
-                //TODO update once the shooting script handles reload speed instead of attack speed
+                float temp = player.get_reload_speed();
+                temp = temp + 1;
+                player.set_movement_speed(temp);
+                Debug.Log("User can reload by " + temp + " speed now");
                 Destroy(this.gameObject);
             }
         }
