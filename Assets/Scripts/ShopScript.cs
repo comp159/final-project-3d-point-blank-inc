@@ -107,8 +107,15 @@ public class ShopScript : MonoBehaviour
         {
             shopText.SetText("Thanks for your patronage!\nYou look all jittery now!");
             float temp = player.get_reload_speed();
-            temp = temp + 1;
-            player.set_movement_speed(temp);
+            temp = temp - (temp * 0.1f);
+            if (temp <= 0)
+            {
+                player.set_reload_speed(0.1f);
+            }
+            else
+            {
+                player.set_reload_speed(temp);
+            }
             player.add_money(-reloadCost);
         }
     }

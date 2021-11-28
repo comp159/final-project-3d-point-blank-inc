@@ -23,7 +23,7 @@ public class UIManagementScript : MonoBehaviour
     private int curHealth;
     private int maxHealth;
     private int atkPower;
-    private int reloadSpeed;
+    private float reloadSpeed;
     private int moveSpd;
     private PlayerController player;
     
@@ -47,7 +47,7 @@ public class UIManagementScript : MonoBehaviour
         maxHealth = player.get_base_health();
         curHealth = player.get_cur_health();
         atkPower = player.get_damage();
-        reloadSpeed = (int)player.get_reload_speed();
+        reloadSpeed = player.get_reload_speed();
         moveSpd = (int)player.get_movement_speed();
         
         floorNumText.text = floorPrefix + floorNum;
@@ -58,19 +58,13 @@ public class UIManagementScript : MonoBehaviour
         moveSpdText.text = moveSpeedPrefix + moveSpd;
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        
-    }
-
     public void UpdateAll()
     {
         UpdateFloor();
         UpdateSchmoney();
         UpdateHealth();
         UpdateAtkPow();
-        UpdateAtkSpd();
+        UpdateReloadSpd();
         UpdateMoveSpd();
     }
 
@@ -96,9 +90,9 @@ public class UIManagementScript : MonoBehaviour
         atkPowerText.SetText(powerPrefix + atkPower);
     }
 
-    private void UpdateAtkSpd()
+    private void UpdateReloadSpd()
     {
-        reloadSpeed = (int)player.get_reload_speed();
+        reloadSpeed = player.get_reload_speed();
         reloadSpeedText.SetText(reloadSpeedPrefix + reloadSpeed);
     }
 

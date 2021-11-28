@@ -48,6 +48,14 @@ public class ShootingScript : MonoBehaviour
     
     void FixedUpdate()
     {
+	    /* Update player attributes */
+	    if (player_shooting)
+	    {
+		    firing_speed = player.get_reload_speed();
+		    damage = player.get_damage();
+		    clip_size = player.get_clip_size();
+	    } 
+	    
         /* Player fires with a left click, and automatically reload upon emptying clip */
         if (Input.GetMouseButtonDown(0) && !cooldown && player_shooting)
         {

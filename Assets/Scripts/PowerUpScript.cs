@@ -53,8 +53,15 @@ public class PowerUpScript : MonoBehaviour
             if (this.gameObject.CompareTag("Reload"))
             {
                 float temp = player.get_reload_speed();
-                temp = temp + 1;
-                player.set_movement_speed(temp);
+                temp = temp - (temp * 0.1f);
+                if (temp <= 0)
+                {
+                    player.set_reload_speed(0.1f);
+                }
+                else
+                {
+                    player.set_reload_speed(temp);
+                }
                 Debug.Log("User can reload by " + temp + " speed now");
                 Destroy(this.gameObject);
             }
