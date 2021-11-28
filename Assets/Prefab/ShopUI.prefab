@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8888403784689053596}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Buying Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3259557507863413600}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3259557508197819360}
+        m_TargetAssemblyTypeName: ShopScript, Assembly-CSharp
+        m_MethodName: BuySpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3259557507985906374
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +179,7 @@ GameObject:
   - component: {fileID: 3259557507985906373}
   - component: {fileID: 3259557507985906372}
   m_Layer: 5
-  m_Name: $
+  m_Name: Buy Reload Speed Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -354,7 +366,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3259557508048910760}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3259557508197819360}
+        m_TargetAssemblyTypeName: ShopScript, Assembly-CSharp
+        m_MethodName: BuyHeal
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3259557508064622817
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +390,7 @@ GameObject:
   - component: {fileID: 3259557508064622822}
   - component: {fileID: 3259557508064622820}
   - component: {fileID: 3259557508064622823}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Speed Boost (Shop Image)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -547,7 +571,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3259557508101958259}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3259557508197819360}
+        m_TargetAssemblyTypeName: ShopScript, Assembly-CSharp
+        m_MethodName: BuyReload
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3259557508197819362
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,7 +594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3259557508197819363}
   - component: {fileID: 3259557508197819360}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ShopUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -821,7 +857,7 @@ GameObject:
   - component: {fileID: 3259557508406407725}
   - component: {fileID: 3259557508406407699}
   - component: {fileID: 3259557508406407698}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Attack Boost (Shop Text)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1295,7 +1331,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3259557508538260178}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3259557508197819360}
+        m_TargetAssemblyTypeName: ShopScript, Assembly-CSharp
+        m_MethodName: BuyAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3259557508559145534
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,7 +1355,7 @@ GameObject:
   - component: {fileID: 3259557508559145535}
   - component: {fileID: 3259557508559145533}
   - component: {fileID: 3259557508559145532}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Shop Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1380,7 +1428,7 @@ GameObject:
   - component: {fileID: 3259557508596352688}
   - component: {fileID: 3259557508596352691}
   m_Layer: 5
-  m_Name: $
+  m_Name: Buy Attack Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1458,7 +1506,7 @@ GameObject:
   - component: {fileID: 3259557508707536879}
   - component: {fileID: 3259557508707536877}
   - component: {fileID: 3259557508707536876}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Attack Boost (Shop Image)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1530,7 +1578,7 @@ GameObject:
   - component: {fileID: 3259557508877010668}
   - component: {fileID: 3259557508877010642}
   - component: {fileID: 3259557508877010669}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: HP Restore (Shop Text)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1670,7 +1718,7 @@ GameObject:
   - component: {fileID: 3259557509044229993}
   - component: {fileID: 3259557509044229992}
   m_Layer: 5
-  m_Name: $
+  m_Name: Buy Move Speed Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1869,7 +1917,7 @@ GameObject:
   - component: {fileID: 3259557509144534157}
   - component: {fileID: 3259557509144534899}
   - component: {fileID: 3259557509144534898}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Speed Boost (Shop Text)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2008,7 +2056,7 @@ GameObject:
   - component: {fileID: 3259557509157188024}
   - component: {fileID: 3259557509157188030}
   - component: {fileID: 3259557509157188025}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Reload Boost (Shop Text)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2148,7 +2196,7 @@ GameObject:
   - component: {fileID: 3259557509343164024}
   - component: {fileID: 3259557509343164027}
   m_Layer: 5
-  m_Name: $
+  m_Name: Buy Heal Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2226,7 +2274,7 @@ GameObject:
   - component: {fileID: 3259557509522129201}
   - component: {fileID: 3259557509522129207}
   - component: {fileID: 3259557509522129206}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Reload Boost (Shop Image)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
