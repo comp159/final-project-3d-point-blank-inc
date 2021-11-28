@@ -54,6 +54,10 @@ public class ShootingScript : MonoBehaviour
 		    firing_speed = player.get_reload_speed();
 		    damage = player.get_damage();
 		    clip_size = player.get_clip_size();
+			if(clip_remaining <= 0)
+			{
+				ammo_text.text = "Reloading...";
+			}
 	    } 
 	    
         /* Player fires with a left click, and automatically reload upon emptying clip */
