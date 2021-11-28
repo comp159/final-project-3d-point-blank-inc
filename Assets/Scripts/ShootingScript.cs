@@ -141,6 +141,13 @@ public class ShootingScript : MonoBehaviour
 					}
                 }
             }
+			else if (hit.collider.tag == "Box")
+			{
+				/* Handle box being shot by either enemy or player*/
+				Debug.Log("Box has been shot");
+				//hit.collider.GetComponent<BoxScript>().spawn_powerup());
+				//Destroy(hit.collider.gameObject);
+			}
             else
             {
                 /* Raycast has missed it's intended target, and will not do anything */
