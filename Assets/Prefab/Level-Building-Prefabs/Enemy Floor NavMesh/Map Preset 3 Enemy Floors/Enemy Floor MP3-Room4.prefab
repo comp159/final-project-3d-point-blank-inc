@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7246447326249389915}
   - component: {fileID: 2813007732640326481}
   m_Layer: 0
-  m_Name: Enemy Floor MP2-Room2
+  m_Name: Enemy Floor MP3-Room4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,5 +124,5 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: d23c09ff2a0294446b6d0d124c3a8624, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 6fb1c0783c4ac5e4da85bbde4e725f26, type: 2}
   m_BuildHeightMesh: 0
