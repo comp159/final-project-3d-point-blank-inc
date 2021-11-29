@@ -21,10 +21,12 @@ TagManager:
   - MapController
   - EnemyRoom
   - Terrain
+  - Box
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
+  - Water
   - Water
   - UI
   - 
