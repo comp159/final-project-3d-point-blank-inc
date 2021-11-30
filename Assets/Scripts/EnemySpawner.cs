@@ -45,7 +45,7 @@ public class EnemySpawner : MonoBehaviour
         {
             //var position = pos + new Vector3(Random.Range(0, roomHeight), 0, Random.Range(0, roomWidth));
             //GameObject obj = Instantiate(enemyPrefab, position, Quaternion.identity);
-            Vector3 enemySpawnPoint = player.gameObject.transform.position + Random.insideUnitSphere * 30f;
+            Vector3 enemySpawnPoint = player.gameObject.transform.position + Random.insideUnitSphere * 80f;
             enemySpawnPoint = new Vector3(enemySpawnPoint.x, 0, enemySpawnPoint.z);
             NavMeshHit hit;
             while (!NavMesh.SamplePosition(enemySpawnPoint, out hit, 1f, NavMesh.AllAreas))
