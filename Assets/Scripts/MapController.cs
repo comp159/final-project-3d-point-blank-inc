@@ -31,8 +31,8 @@ public class MapController : MonoBehaviour
     public void GenerateNextFloor()
     {
         GameObject newFloor;
-        int rand = Random.Range(1, 3);
-        Vector3 pos = player.transform.position;
+        int rand = Random.Range(1, 4);
+        Vector3 pos = new Vector3(player.transform.position.x, 0, player.transform.position.z);
         if (rand == 1)
         {
             newFloor = Instantiate(map1, pos, Quaternion.identity);

@@ -279,6 +279,8 @@ MonoBehaviour:
   reload_speed: 2.5
   schmoney: 0
   clip_size: 10
+  shooting_type: 0
+  barriers: []
 --- !u!1 &7589735789126831802
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,6 +571,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: de3f6a3c5b40dea429a49ea9375327c4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 188b16b854bc5674ebe19ccb2bf894e1, type: 2}
+    - target: {fileID: -7511558181221131132, guid: de3f6a3c5b40dea429a49ea9375327c4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9cf7d7d5ac11add48b7529ac6d5b43e2, type: 2}
     - target: {fileID: 919132149155446097, guid: de3f6a3c5b40dea429a49ea9375327c4,
         type: 3}
       propertyPath: m_Name
