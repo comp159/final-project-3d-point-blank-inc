@@ -44,7 +44,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
 	public void init_enemy_data(){
-		enemy_spawnData.set_health(50);
+		enemy_spawnData.set_health(30);
 		enemy_spawnData.set_movement_speed(2f);
 		enemy_spawnData.set_damage(1);
 		enemy_spawnData.set_attack_speed(5);
