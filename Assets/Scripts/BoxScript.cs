@@ -42,24 +42,20 @@ public class BoxScript : MonoBehaviour
 		//gun_powerups.Add(powerup5);
 		//gun_powerups.Add(powerup6);
 
-		bool spawned = false;
-
 		/* First, try to drop a stat_powerup */
 		if(Random.Range(0, stat_drop) == 0)
 		{
 			Debug.Log("Spawned Stat Powerup!");
 			Instantiate(stat_powerups[Random.Range(0, 4)], this.transform.position, Quaternion.identity);
-			spawned = true;
+			return;
 		}
 
 		/* If a stat_powerup isn't drop, try to drop a gun_powerup */
-		if(Random.Range(0, stat_drop) == 0 && !spawned)
+		if(Random.Range(0, gun_drop) == 0)
 		{
 			Debug.Log("Spawned Gun Powerup!");
 			Instantiate(gun_powerups[Random.Range(0, 2)], this.transform.position, Quaternion.identity);
-			spawned = true;
 		}
-
 	}
 
 }

@@ -13,7 +13,6 @@ public class ShootingScript : MonoBehaviour
     private int clip_size;
 	private int clip_remaining;
     private bool cooldown = false;
-	[SerializeField] private TextMeshProUGUI ammo_text;
 
 	/* Enemy variable, assuming player isn't the parent */
 	[SerializeField] private EnemyScript enemy;
@@ -26,6 +25,9 @@ public class ShootingScript : MonoBehaviour
     /* Debug and testing variables, to be deleted */
     private int enemy_counter = 0;  
     private int player_counter = 0;
+
+	/* Display UI */
+	[SerializeField] private TextMeshProUGUI ammo_text;
 
     void Start()
     {

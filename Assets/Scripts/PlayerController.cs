@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
     
     public List<GameObject> barriers = new List<GameObject>();
     private MapController mc;
+    [SerializeField] private TextMeshProUGUI powerup_text;
     
     /* Actions to call before first frame */
     void Start()
@@ -210,6 +212,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Hi");
             UpdateBarriers(other.gameObject);
         }
+        if (other.gameObject.CompareTag("Stronk") || other.gameObject.CompareTag("Heal") || other.gameObject.CompareTag("Reload") || other.gameObject.CompareTag("Schpeed"))
+        {
+            Debug.Log("Picked up powerup!");
+            StartCoroutine(got_powerup(other.gameObject.tag));
+        }
     }
 
     private void UpdateBarriers(GameObject g)
@@ -232,5 +239,12 @@ public class PlayerController : MonoBehaviour
                 GetChildObject(child, _tag);
             }
         }
+    }
+    
+    IEnumerator got_powerup(string type)
+    {
+        powerup_text.text = type + " powerup!!";
+        yield return new WaitForSeconds(3);
+        powerup_text.text = " ";
     }
 }
