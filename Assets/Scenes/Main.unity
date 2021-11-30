@@ -1451,6 +1451,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 430933878801436032, guid: 57017f484bdd3cb44aa0c8de96728172,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2758441244692003838, guid: 57017f484bdd3cb44aa0c8de96728172,
         type: 3}
       propertyPath: m_NavMeshData
@@ -2374,8 +2379,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3551140838026773279, guid: b843b936097ea90968d130b92a499fbc,
         type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 88.12963
+      objectReference: {fileID: 0}
+    - target: {fileID: 3551140838026773279, guid: b843b936097ea90968d130b92a499fbc,
+        type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -4.673805
+      value: -4.6737976
       objectReference: {fileID: 0}
     - target: {fileID: 3551140838027858684, guid: b843b936097ea90968d130b92a499fbc,
         type: 3}

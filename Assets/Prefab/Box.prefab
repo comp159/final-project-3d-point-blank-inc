@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5973902224257353937}
   - component: {fileID: 4982676403663037024}
   - component: {fileID: 2848373719310211371}
+  - component: {fileID: 3023480045161652598}
   m_Layer: 0
   m_Name: Box
   m_TagString: Box
@@ -113,3 +114,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.04, y: 0.04, z: 0.04}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3023480045161652598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5325343950987929860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10f663298fca9503cad68f3d2973d903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerup1: {fileID: 7844445845925237674, guid: ccb9fd6e6e3e2224eb2e5acc366f508c,
+    type: 3}
+  powerup2: {fileID: 2330175009435606914, guid: 26bacb47899821b42ba078187edc64c3,
+    type: 3}
+  powerup3: {fileID: 6514076621274176201, guid: 026a704eb24e1f84b8bada84889c5138,
+    type: 3}
+  powerup4: {fileID: 4461942328906013051, guid: cf8670a6ec1245543a76a88c8be67231,
+    type: 3}
+  powerup5: {fileID: 0}
+  powerup6: {fileID: 0}
+  stat_drop: 4
+  gun_drop: 10
