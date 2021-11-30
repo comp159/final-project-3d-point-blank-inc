@@ -1887,6 +1887,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shop Keeper
       objectReference: {fileID: 0}
+    - target: {fileID: 912303882113799670, guid: e455aa2c3db177a4fa6a6145c057873a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e455aa2c3db177a4fa6a6145c057873a, type: 3}
 --- !u!1001 &9091178448136241946
