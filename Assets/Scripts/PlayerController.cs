@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float reload_speed = 2.5f;
     [SerializeField] private int schmoney = 0;
     [SerializeField] private int clip_size = 10;
+    private int cur_floor = 1;
     
     /* Different types of shooting, implemented in ShootingScript
      * 0 - Normal
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
     
     public List<GameObject> barriers = new List<GameObject>();
     private MapController mc;
+    private EnemySpawner es;
     [SerializeField] private TextMeshProUGUI powerup_text;
     
     /* Actions to call before first frame */
@@ -39,6 +41,7 @@ public class PlayerController : MonoBehaviour
         cur_health = base_health;
         controller = GetComponent<CharacterController>();
         mc = GameObject.FindGameObjectWithTag("MapController").GetComponent<MapController>();
+        es = GameObject.FindGameObjectWithTag("GameController").GetComponent<EnemySpawner>();
     }
     private void Update()
     {
@@ -142,6 +145,11 @@ public class PlayerController : MonoBehaviour
         return shooting_type;
     }
 
+    public int get_cur_floor()
+    {
+        return cur_floor;
+    }
+
     public void set_base_health(int input_health)
     {
         base_health = input_health;
@@ -205,6 +213,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Stairs"))
         {
+            cur_floor++;
+            es.generate_enemy_data(cur_floor);
             mc.DeleteCurrentFloor();
         }
         if (other.gameObject.CompareTag("EnemyRoom"))
