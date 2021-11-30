@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -45,12 +46,12 @@ public class EnemySpawner : MonoBehaviour
         {
             //var position = pos + new Vector3(Random.Range(0, roomHeight), 0, Random.Range(0, roomWidth));
             //GameObject obj = Instantiate(enemyPrefab, position, Quaternion.identity);
-            Vector3 enemySpawnPoint = player.gameObject.transform.position + Random.insideUnitSphere * 60f;
+            Vector3 enemySpawnPoint = player.gameObject.transform.position + Random.insideUnitSphere * 40f;
             enemySpawnPoint = new Vector3(enemySpawnPoint.x, 0, enemySpawnPoint.z);
             NavMeshHit hit;
             while (!NavMesh.SamplePosition(enemySpawnPoint, out hit, 1f, NavMesh.AllAreas))
             {
-                enemySpawnPoint = player.gameObject.transform.position + Random.insideUnitSphere * 60f;
+                enemySpawnPoint = player.gameObject.transform.position + Random.insideUnitSphere * 40f;
                 enemySpawnPoint = new Vector3(enemySpawnPoint.x, 0, enemySpawnPoint.z);
             }
             GameObject obj = Instantiate(enemyPrefab, hit.position, Quaternion.identity);
