@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
+using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
@@ -41,8 +43,17 @@ public class EnemySpawner : MonoBehaviour
         int enemies = Random.Range(1, maxEnemies);
         for (int i = 0; i < enemies; i++)
         {
-            var position = pos + new Vector3(Random.Range(0, roomHeight), 0, Random.Range(0, roomWidth));
-            GameObject obj = Instantiate(enemyPrefab, position, Quaternion.identity);
+            //var position = pos + new Vector3(Random.Range(0, roomHeight), 0, Random.Range(0, roomWidth));
+            //GameObject obj = Instantiate(enemyPrefab, position, Quaternion.identity);
+            Vector3 enemySpawnPoint = player.gameObject.transform.position + Random.insideUnitSphere * 30f;
+            enemySpawnPoint = new Vector3(enemySpawnPoint.x, 0, enemySpawnPoint.z);
+            NavMeshHit hit;
+            while (!NavMesh.SamplePosition(enemySpawnPoint, out hit, 1f, NavMesh.AllAreas))
+            {
+                enemySpawnPoint = player.gameObject.transform.position + Random.insideUnitSphere * 80f;
+                enemySpawnPoint = new Vector3(enemySpawnPoint.x, 0, enemySpawnPoint.z);
+            }
+            GameObject obj = Instantiate(enemyPrefab, hit.position, Quaternion.identity);
         }
         
         for (int i = 0; i < barriers.Count; i++)
