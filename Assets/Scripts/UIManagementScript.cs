@@ -70,6 +70,8 @@ public class UIManagementScript : MonoBehaviour
 
     private void UpdateFloor()
     {
+		floorNum = player.get_cur_floor();
+		floorNumText.SetText(floorPrefix + floorNum);
     }
 
     private void UpdateSchmoney()

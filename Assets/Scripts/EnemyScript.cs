@@ -92,6 +92,11 @@ public class EnemyScript : MonoBehaviour
     {
         attack_speed = input_attack_speed;
     }
+
+	public void set_money_drop(int input_money_drop)
+	{
+		money_drop = input_money_drop;
+	}
     
     /* Ease of access to deal damage */
     public void deal_damage(int damage_dealt)
