@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int schmoney = 0;
     [SerializeField] private int clip_size = 10;
     private int cur_floor = 1;
+    private AudioSource audio;
+    private AudioClip powerUpClip;
     
     /* Different types of shooting, implemented in ShootingScript
      * 0 - Normal
@@ -42,6 +44,9 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         mc = GameObject.FindGameObjectWithTag("MapController").GetComponent<MapController>();
         es = GameObject.FindGameObjectWithTag("GameController").GetComponent<EnemySpawner>();
+
+        audio = GetComponent<AudioSource>();
+        powerUpClip = Resources.Load("Powerup Sound") as AudioClip;
     }
     private void Update()
     {
@@ -254,6 +259,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator got_powerup(string type)
     {
         powerup_text.text = type + " powerup!!";
+        audio.PlayOneShot(powerUpClip);
         yield return new WaitForSeconds(3);
         powerup_text.text = " ";
     }
