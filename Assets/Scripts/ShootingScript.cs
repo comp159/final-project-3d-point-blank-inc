@@ -14,6 +14,11 @@ public class ShootingScript : MonoBehaviour
 	private int clip_remaining;
     private bool cooldown = false;
 
+    private AudioSource audio;
+
+    private AudioClip shootSound;
+
+    private AudioClip reloadSound;
 	/* Enemy variable, assuming player isn't the parent */
 	[SerializeField] private EnemyScript enemy;
     
@@ -31,6 +36,11 @@ public class ShootingScript : MonoBehaviour
 
     void Start()
     {
+	    audio = GetComponent<AudioSource>();
+	    audio.playOnAwake = false;
+	    shootSound = Resources.Load("Shooting Sound") as AudioClip;
+	    reloadSound = Resources.Load("Gun Reload Reload") as AudioClip;
+	    
         laser = GetComponent<LineRenderer>();
 		if (player_shooting)
         {
@@ -90,7 +100,7 @@ public class ShootingScript : MonoBehaviour
 		/* Allow player to manually reload */
 		if (Input.GetButtonDown("Fire3") && !cooldown && player_shooting)
         {
-			StartCoroutine("player_reload");
+	        StartCoroutine("player_reload");
         }
 
     }
@@ -101,6 +111,7 @@ public class ShootingScript : MonoBehaviour
         while (true)
         {
             /* Testing */
+            audio.PlayOneShot(shootSound);
             enemy_counter++;
             Debug.Log("Enemy shot: " + enemy_counter);
             
@@ -115,6 +126,7 @@ public class ShootingScript : MonoBehaviour
     IEnumerator player_firing()
     {
         /* Testing */
+        audio.PlayOneShot(shootSound);
         player_counter++;
         Debug.Log("Player shot: " + player_counter);
         
@@ -133,18 +145,19 @@ public class ShootingScript : MonoBehaviour
         Debug.Log("Player shot: " + player_counter);
         
         /* Search for enemy within raycast*/
+        audio.PlayOneShot(shootSound);
         raycast("Enemy", Vector3.forward);
         laser.enabled = true;
 		yield return new WaitForSeconds(0.1f);
 		laser.enabled = false;
 		yield return new WaitForSeconds(0.1f);
-
+		audio.PlayOneShot(shootSound);
 		raycast("Enemy", Vector3.forward);
         laser.enabled = true;
 		yield return new WaitForSeconds(0.1f);
 		laser.enabled = false;
 		yield return new WaitForSeconds(0.1f);
-
+		audio.PlayOneShot(shootSound);
 		raycast("Enemy", Vector3.forward);
         laser.enabled = true;
 		yield return new WaitForSeconds(0.1f);
@@ -157,18 +170,18 @@ public class ShootingScript : MonoBehaviour
         /* Testing */
         player_counter++;
         Debug.Log("Player shot: " + player_counter);
-        
+        audio.PlayOneShot(shootSound);
         /* Search for enemy within raycast*/
         raycast("Enemy", Quaternion.Euler(0,-20,0) * Vector3.forward);
         laser.enabled = true;
 		yield return new WaitForSeconds(0.1f);
 		laser.enabled = false;
-
+		audio.PlayOneShot(shootSound);
 		raycast("Enemy", Vector3.forward);
         laser.enabled = true;
 		yield return new WaitForSeconds(0.1f);
 		laser.enabled = false;
-
+		audio.PlayOneShot(shootSound);
 		raycast("Enemy", Quaternion.Euler(0,20,0) * Vector3.forward);
         laser.enabled = true;
 		yield return new WaitForSeconds(0.1f);
@@ -180,7 +193,7 @@ public class ShootingScript : MonoBehaviour
     {
         /* Testing */
         Debug.Log("Player reloading...");
-        
+        audio.PlayOneShot(reloadSound);
         /* Prevent player from firing for their reload time (firing_speed) while ammo is restocked */
         ammo_text.text = "Reloading...";
 		cooldown = true;
