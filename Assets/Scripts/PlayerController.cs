@@ -222,7 +222,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Hi");
             UpdateBarriers(other.gameObject);
         }
-        if (other.gameObject.CompareTag("Stronk") || other.gameObject.CompareTag("Heal") || other.gameObject.CompareTag("Reload") || other.gameObject.CompareTag("Schpeed"))
+        if (other.gameObject.CompareTag("Stronk") || other.gameObject.CompareTag("Heal") || other.gameObject.CompareTag("Reload") || other.gameObject.CompareTag("Schpeed") || other.gameObject.CompareTag("Burst") || other.gameObject.CompareTag("Spread"))
         {
             Debug.Log("Picked up powerup!");
             StartCoroutine(got_powerup(other.gameObject.tag));
