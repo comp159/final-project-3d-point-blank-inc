@@ -24,6 +24,7 @@ TagManager:
   - Box
   - Burst
   - Spread
+  - ShopScreen
   layers:
   - Default
   - TransparentFX
