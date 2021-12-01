@@ -22,6 +22,8 @@ TagManager:
   - EnemyRoom
   - Terrain
   - Box
+  - Burst
+  - Spread
   layers:
   - Default
   - TransparentFX
