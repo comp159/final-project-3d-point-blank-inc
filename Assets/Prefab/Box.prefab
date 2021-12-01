@@ -134,7 +134,9 @@ MonoBehaviour:
     type: 3}
   powerup4: {fileID: 4461942328906013051, guid: cf8670a6ec1245543a76a88c8be67231,
     type: 3}
-  powerup5: {fileID: 0}
-  powerup6: {fileID: 0}
+  powerup5: {fileID: 7844445845925237674, guid: 25d53bfa0da8a5bb4ae263ada541d399,
+    type: 3}
+  powerup6: {fileID: 7844445845925237674, guid: 410f086f5b70c7ccbbe5c68740b1d554,
+    type: 3}
   stat_drop: 4
-  gun_drop: 10
+  gun_drop: 1
