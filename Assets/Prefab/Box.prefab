@@ -139,4 +139,4 @@ MonoBehaviour:
   powerup6: {fileID: 7844445845925237674, guid: 410f086f5b70c7ccbbe5c68740b1d554,
     type: 3}
   stat_drop: 4
-  gun_drop: 1
+  gun_drop: 10
