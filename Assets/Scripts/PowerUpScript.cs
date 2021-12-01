@@ -6,15 +6,11 @@ using UnityEngine;
 public class PowerUpScript : MonoBehaviour
 {
     private PlayerController player;
-    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
         GameObject temp = GameObject.FindGameObjectWithTag("Player");
         player = temp.GetComponent<PlayerController>();
-        audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.clip = Resources.Load("Powerup Sound") as AudioClip;
-        audioSource.playOnAwake = false;
     }
 
     // Update is called once per frame
@@ -33,7 +29,6 @@ public class PowerUpScript : MonoBehaviour
                 temp = temp + 5;
                 player.set_cur_health(temp);
                 Debug.Log("User healed 5 hp, now has "+ temp + " hp");
-                audioSource.PlayOneShot(audioSource.clip);
                 Destroy(this.gameObject);
             }
 
@@ -43,7 +38,6 @@ public class PowerUpScript : MonoBehaviour
                 temp = temp + 5;
                 player.set_damage(temp);
                 Debug.Log("User buffed attack by 1, now has " + temp);
-                audioSource.PlayOneShot(audioSource.clip);
                 Destroy(this.gameObject);
             }
 
@@ -53,7 +47,6 @@ public class PowerUpScript : MonoBehaviour
                 temp = temp + 5;
                 player.set_movement_speed(temp);
                 Debug.Log("User is faster by 1, now has " + temp + " speed");
-                audioSource.PlayOneShot(audioSource.clip);
                 Destroy(this.gameObject);
             }
 
@@ -70,7 +63,6 @@ public class PowerUpScript : MonoBehaviour
                     player.set_reload_speed(temp);
                 }
                 Debug.Log("User can reload by " + temp + " speed now");
-                audioSource.PlayOneShot(audioSource.clip);
                 Destroy(this.gameObject);
             }
         }
