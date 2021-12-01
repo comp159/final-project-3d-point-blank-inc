@@ -39,8 +39,8 @@ public class BoxScript : MonoBehaviour
 		stat_powerups.Add(powerup2);
 		stat_powerups.Add(powerup3);
 		stat_powerups.Add(powerup4);
-		//gun_powerups.Add(powerup5);
-		//gun_powerups.Add(powerup6);
+		gun_powerups.Add(powerup5);
+		gun_powerups.Add(powerup6);
 
 		/* First, try to drop a stat_powerup */
 		if(Random.Range(0, stat_drop) == 0)

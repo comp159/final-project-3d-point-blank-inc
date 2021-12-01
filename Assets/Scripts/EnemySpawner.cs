@@ -20,6 +20,13 @@ public class EnemySpawner : MonoBehaviour
     private List<GameObject> b;
     private PlayerController player;
 
+	/* Initial Enemy Stats */
+	[SerializeField] private int health = 30;
+    [SerializeField] private float movement_speed = 3.5f;
+    [SerializeField] private int damage = 1;
+    [SerializeField] private float attack_speed = 4f;
+    [SerializeField] private int money_drop = 1;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -43,20 +50,50 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+	/* Reset the information found within the prefab */
 	public void init_enemy_data(){
-		enemy_spawnData.set_health(30);
-		enemy_spawnData.set_movement_speed(2f);
-		enemy_spawnData.set_damage(1);
-		enemy_spawnData.set_attack_speed(5);
-		enemy_spawnData.set_money_drop(1);
+		enemy_spawnData.set_health(health);
+		enemy_spawnData.set_movement_speed(movement_speed);
+		enemy_spawnData.set_damage(damage);
+		enemy_spawnData.set_attack_speed(attack_speed);
+		enemy_spawnData.set_money_drop(money_drop);
 	}
 
+	/* Increase enemy difficulty */
 	public void generate_enemy_data(int floor_num){
-		enemy_spawnData.set_health((int) Math.Round(enemy_spawnData.get_health() * 1.05));
-		enemy_spawnData.set_movement_speed((float) Math.Round((1.5 * floor_num)));
-		enemy_spawnData.set_damage((int) Math.Round(enemy_spawnData.get_damage() * (1.05 * floor_num)));
-		enemy_spawnData.set_attack_speed((float) Math.Round(enemy_spawnData.get_attack_speed() / (1.05 * floor_num)));
-		enemy_spawnData.set_money_drop((int) Math.Round(enemy_spawnData.get_money_drop() * (1.05 * floor_num)));
+
+		/* Health */
+		enemy_spawnData.set_health((int) Math.Ceiling(enemy_spawnData.get_health() + (.1 * floor_num)));
+		if (floor_num % 2 == 0)
+		{
+			enemy_spawnData.set_health((int) Math.Ceiling((double)enemy_spawnData.get_health() + 1));
+		}
+
+		/* Movement Speed */
+		if (floor_num % 2 == 0)
+		{
+			enemy_spawnData.set_movement_speed((float) Math.Ceiling((double)enemy_spawnData.get_movement_speed() + (0.03 * floor_num)));
+		}
+		
+
+		/* Damage */
+		if (floor_num % 2 == 0)
+		{
+			enemy_spawnData.set_damage((int) Math.Ceiling((double)enemy_spawnData.get_damage() + 1));
+		}
+		
+		/* Attack Speed */
+		if (floor_num % 2 == 1)
+		{
+			enemy_spawnData.set_attack_speed((float) enemy_spawnData.get_attack_speed() - (enemy_spawnData.get_attack_speed() / 50));
+		}
+		
+		/* Money Drop */
+		if (floor_num % 2 == 1)
+		{
+			enemy_spawnData.set_money_drop((int) Math.Ceiling((double)enemy_spawnData.get_money_drop() + 1));
+		}
+		
 	}
 
     public void SpawnEnemies(Vector3 pos, List<GameObject> barriers)

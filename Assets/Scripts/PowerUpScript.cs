@@ -65,6 +65,18 @@ public class PowerUpScript : MonoBehaviour
                 Debug.Log("User can reload by " + temp + " speed now");
                 Destroy(this.gameObject);
             }
+
+			if (this.gameObject.CompareTag("Spread"))
+            {
+                player.set_shooting_type(2);
+                Destroy(this.gameObject);
+            }
+
+			if (this.gameObject.CompareTag("Burst"))
+            {
+                player.set_shooting_type(1);
+                Destroy(this.gameObject);
+            }
         }
     }
 }
