@@ -9,10 +9,15 @@ public class MapController : MonoBehaviour
     [SerializeField] private GameObject map3;
     private List<GameObject> spawners = new List<GameObject>();
     private GameObject player;
+    private AudioSource audio;
+
+    private AudioClip stairsSound;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        audio = player.GetComponent<AudioSource>();
+        stairsSound = Resources.Load("Taking the Stairs") as AudioClip;
     }
 
     public void DeleteCurrentFloor()
@@ -50,6 +55,7 @@ public class MapController : MonoBehaviour
         player.transform.position = spawn;
         spawners[0].tag = "Untagged";
         spawners.Clear();
+        audio.PlayOneShot(stairsSound);
     }
 
     public void GetChildObject(Transform parent, string _tag)
