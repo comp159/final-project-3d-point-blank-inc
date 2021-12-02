@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
      * 3 - JFK (tbd)
      */
     [SerializeField] private int shooting_type = 0;
-    
+    private bool soundPlayed;
     public List<GameObject> barriers = new List<GameObject>();
     private MapController mc;
     private EnemySpawner es;
@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
         ui = temp.GetComponent<UIToggleScript>();
         Time.timeScale = 1;
         isDead = false;
+        soundPlayed = false;
     }
     private void Update()
     {
@@ -64,10 +65,11 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (isDead)
+        if (isDead && !soundPlayed)
         {
             Time.timeScale = 0;
             ui.GameOver();
+            soundPlayed = true;
         }
     }
 
