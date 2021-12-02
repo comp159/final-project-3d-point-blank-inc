@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7844445844317841553}
   - component: {fileID: 7844445844317841552}
   m_Layer: 0
-  m_Name: Attack Boost Image
+  m_Name: Spread Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fe01db214f95bd944af7f67da8a065bc, type: 2}
+  - {fileID: 2100000, guid: cc52a3596c4f1e1418aae523b5f56850, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -158,7 +158,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b9a90594b7f8a4743a5c7cacd5cf8176, type: 2}
+  - {fileID: 2100000, guid: cc52a3596c4f1e1418aae523b5f56850, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
