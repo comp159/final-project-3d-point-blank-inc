@@ -7,6 +7,7 @@ public class MapController : MonoBehaviour
     [SerializeField] private GameObject map1;
     [SerializeField] private GameObject map2;
     [SerializeField] private GameObject map3;
+    [SerializeField] private ShopKeeper shopKeeper;
     private List<GameObject> spawners = new List<GameObject>();
     private GameObject player;
     // Start is called before the first frame update
@@ -46,13 +47,15 @@ public class MapController : MonoBehaviour
             newFloor = Instantiate(map3, pos, Quaternion.identity);
         }
         GetChildObject(newFloor.transform, "Player Spawner");
+        Debug.Log(spawners);
+        shopKeeper.ChangePosition(newFloor);
         Vector3 spawn = spawners[0].transform.position;
         player.transform.position = spawn;
         spawners[0].tag = "Untagged";
         spawners.Clear();
     }
 
-    public void GetChildObject(Transform parent, string _tag)
+    private void GetChildObject(Transform parent, string _tag)
     {
         for (int i = 0; i < parent.childCount; i++)
         {

@@ -26,20 +26,8 @@ public class PlayerHealthBarScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SHOPUI.activeInHierarchy || PAUSEUI.activeInHierarchy)
-        {
-            HealthBarBackground.SetActive(false);
-            Debug.Log(PAUSEUI.activeInHierarchy);
-        }
-        else
-        {
-            if (!HealthBarBackground.activeInHierarchy)
-            {
-                HealthBarBackground.SetActive(true);
-            }
-
-            HealthBarFillImage.fillAmount = (float)Player.gameObject.GetComponent<PlayerController>().get_cur_health() 
+        HealthBarFillImage.fillAmount = (float)Player.gameObject.GetComponent<PlayerController>().get_cur_health() 
                                                              / Player.gameObject.GetComponent<PlayerController>().get_base_health();
-        }
+        
     }
 }
