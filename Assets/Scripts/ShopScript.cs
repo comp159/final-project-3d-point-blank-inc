@@ -11,7 +11,7 @@ public class ShopScript : MonoBehaviour
     private Text buyHealText, buyAttackText, buySpeedText, buyReloadText;
     private PlayerController player;
     private Button buyHeal, buyAttack, buyMoveSpeed, buyReloadSpeed;
-
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +21,8 @@ public class ShopScript : MonoBehaviour
         reloadCost = 10;
         
         Transform buyingButtons = transform.Find("Buying Buttons");
+        audioSource = this.GetComponent<AudioSource>();
+        
 
         GameObject temp = GameObject.FindGameObjectWithTag("Player");
         player = temp.GetComponent<PlayerController>();
@@ -56,6 +58,7 @@ public class ShopScript : MonoBehaviour
 		}
         else
         {
+            audioSource.PlayOneShot(audioSource.clip);
             shopText.SetText("Hopefully that heals\nyour bullet wounds!");
             int temp = player.get_cur_health();
             temp = temp + 5;
@@ -77,6 +80,7 @@ public class ShopScript : MonoBehaviour
         }
         else
         {
+            audioSource.PlayOneShot(audioSource.clip);
             shopText.SetText("Go get those gains!");
             int temp = player.get_damage();
             temp = temp + 5;
@@ -93,6 +97,7 @@ public class ShopScript : MonoBehaviour
         }
         else
         {
+            audioSource.PlayOneShot(audioSource.clip);
             shopText.SetText("Enjoy the clout!");
             float temp = player.get_movement_speed();
             temp = temp + 5;
@@ -109,6 +114,7 @@ public class ShopScript : MonoBehaviour
         }
         else
         {
+            audioSource.PlayOneShot(audioSource.clip);
             shopText.SetText("Thanks for your patronage!\nYou look all jittery now!");
             float temp = player.get_reload_speed();
             temp = temp - (temp * 0.1f);
