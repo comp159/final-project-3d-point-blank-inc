@@ -47,6 +47,7 @@ public class EnemySpawner : MonoBehaviour
 
             inRoom = false;
             player.barriers.Clear();
+            b.Clear();
         }
     }
 
