@@ -38,7 +38,15 @@ Key Features:
 
 Screenshots:
 ------------
-[TBD]
+### TitleScreen
+![Screenshot4](https://user-images.githubusercontent.com/56521346/144373158-a13d5dff-b533-42f5-b558-487c5ee1ca36.PNG)
+### Gameplay
+![Screenshot1](https://user-images.githubusercontent.com/56521346/144372475-5f5ff365-ab0d-4f90-9e07-d2b598d55f15.PNG)
+### Shop
+![Screenshot2](https://user-images.githubusercontent.com/56521346/144372514-5843cfe6-5ab3-454d-ba7d-11aa7fae1fae.PNG)
+### Player Stats Screen
+![Screenshot3](https://user-images.githubusercontent.com/56521346/144372519-e9986ec7-122c-4f66-bf50-16cd73ee0b35.PNG)
+
 
 Disclaimers:
 ------------
