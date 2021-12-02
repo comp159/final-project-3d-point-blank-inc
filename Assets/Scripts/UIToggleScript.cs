@@ -13,6 +13,9 @@ public class UIToggleScript : MonoBehaviour
     private UIManagementScript uis;
     [SerializeField] private GameObject ShopUI;
     private PlayerController player;
+    private AudioSource audio;
+    private AudioClip ded;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,8 @@ public class UIToggleScript : MonoBehaviour
         Time.timeScale = 1;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         gameOverPanel.SetActive(false);
+        audio = player.GetComponent<AudioSource>();
+        ded = Resources.Load("Game Over Sound") as AudioClip;
     }
 
     // Update is called once per frame
@@ -34,15 +39,11 @@ public class UIToggleScript : MonoBehaviour
         {
             PauseGame();
         }
-
-        if (player.get_cur_health() <= 0)
-        {
-            GameOver();
-        }
     }
 
     public void GameOver()
     {
+        audio.PlayOneShot(ded);
         gameOverPanel.SetActive(true);
     }
     public void PauseGame()

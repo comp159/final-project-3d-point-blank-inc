@@ -21,7 +21,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int schmoney = 0;
     [SerializeField] private int clip_size = 10;
     private int cur_floor = 1;
-    
+    private AudioSource audio;
+    private AudioClip powerUpClip;
+    private bool isDead;
+    private UIToggleScript ui;
     /* Different types of shooting, implemented in ShootingScript
      * 0 - Normal
      * 1 - Burst
@@ -29,7 +32,7 @@ public class PlayerController : MonoBehaviour
      * 3 - JFK (tbd)
      */
     [SerializeField] private int shooting_type = 0;
-    
+    private bool soundPlayed;
     public List<GameObject> barriers = new List<GameObject>();
     private MapController mc;
     private EnemySpawner es;
@@ -42,6 +45,15 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         mc = GameObject.FindGameObjectWithTag("MapController").GetComponent<MapController>();
         es = GameObject.FindGameObjectWithTag("GameController").GetComponent<EnemySpawner>();
+
+        audio = GetComponent<AudioSource>();
+        powerUpClip = Resources.Load("Powerup Sound") as AudioClip;
+        
+        GameObject temp = GameObject.FindGameObjectWithTag("Canvas");
+        ui = temp.GetComponent<UIToggleScript>();
+        Time.timeScale = 1;
+        isDead = false;
+        soundPlayed = false;
     }
     private void Update()
     {
@@ -51,6 +63,13 @@ public class PlayerController : MonoBehaviour
             {
                 barriers[i].GetComponent<BoxCollider>().isTrigger = true;
             }
+        }
+
+        if (isDead && !soundPlayed)
+        {
+            Time.timeScale = 0;
+            ui.GameOver();
+            soundPlayed = true;
         }
     }
 
@@ -88,7 +107,8 @@ public class PlayerController : MonoBehaviour
         if (cur_health <= 0)
         {
             // Call some form of "game over" here
-            Destroy(this.gameObject);
+            isDead = true;
+
         } else if (cur_health > base_health)
         {
             cur_health = base_health;
@@ -254,6 +274,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator got_powerup(string type)
     {
         powerup_text.text = type + " powerup!!";
+        audio.PlayOneShot(powerUpClip);
         yield return new WaitForSeconds(3);
         powerup_text.text = " ";
     }
