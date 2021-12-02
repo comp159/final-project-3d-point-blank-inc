@@ -193,11 +193,11 @@ public class ShootingScript : MonoBehaviour
     {
         /* Testing */
         Debug.Log("Player reloading...");
-        audio.PlayOneShot(reloadSound);
         /* Prevent player from firing for their reload time (firing_speed) while ammo is restocked */
         ammo_text.text = "Reloading...";
 		cooldown = true;
-        yield return new WaitForSeconds(firing_speed);
+		audio.PlayOneShot(reloadSound);
+		yield return new WaitForSeconds(firing_speed);
 		clip_remaining = clip_size;
         cooldown = false;
         ammo_text.text = "Current Ammo: " + clip_remaining + "/" + clip_size;
