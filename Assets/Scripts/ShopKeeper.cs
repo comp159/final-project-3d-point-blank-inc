@@ -6,15 +6,15 @@ using UnityEngine;
 
 public class ShopKeeper : MonoBehaviour
 {
-    [SerializeField] private GameObject shopUI;
+    private GameObject shopUI;
     private ShopScript shopScript;
 
     private GameObject shopKeeperSpawn;
     // Start is called before the first frame update
     void Start()
     {
-        GameObject temp = GameObject.Find("ShopUI");
-        shopScript = temp.GetComponent<ShopScript>();
+        shopUI = GameObject.FindGameObjectWithTag("ShopScreen");
+        shopScript = shopUI.GetComponent<ShopScript>();
         shopUI.SetActive(false);
         Time.timeScale = 1;
         shopKeeperSpawn = GameObject.FindGameObjectWithTag("Shop Keeper Spawn");
