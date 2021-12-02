@@ -23,7 +23,8 @@ public class PlayerController : MonoBehaviour
     private int cur_floor = 1;
     private AudioSource audio;
     private AudioClip powerUpClip;
-    
+    private bool isDead;
+    private UIToggleScript ui;
     /* Different types of shooting, implemented in ShootingScript
      * 0 - Normal
      * 1 - Burst
@@ -47,6 +48,11 @@ public class PlayerController : MonoBehaviour
 
         audio = GetComponent<AudioSource>();
         powerUpClip = Resources.Load("Powerup Sound") as AudioClip;
+        
+        GameObject temp = GameObject.FindGameObjectWithTag("Canvas");
+        ui = temp.GetComponent<UIToggleScript>();
+        Time.timeScale = 1;
+        isDead = false;
     }
     private void Update()
     {
@@ -56,6 +62,12 @@ public class PlayerController : MonoBehaviour
             {
                 barriers[i].GetComponent<BoxCollider>().isTrigger = true;
             }
+        }
+
+        if (isDead)
+        {
+            Time.timeScale = 0;
+            ui.GameOver();
         }
     }
 
@@ -93,7 +105,8 @@ public class PlayerController : MonoBehaviour
         if (cur_health <= 0)
         {
             // Call some form of "game over" here
-            Destroy(this.gameObject);
+            isDead = true;
+
         } else if (cur_health > base_health)
         {
             cur_health = base_health;
