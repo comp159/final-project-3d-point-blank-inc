@@ -15,10 +15,10 @@ public class ShootingScript : MonoBehaviour
     private bool cooldown = false;
 
     private AudioSource audio;
+    private AudioSource reloadSource;
 
     private AudioClip shootSound;
-
-    private AudioClip reloadSound;
+    private AudioClip deathSound;
 	/* Enemy variable, assuming player isn't the parent */
 	[SerializeField] private EnemyScript enemy;
     
@@ -38,10 +38,12 @@ public class ShootingScript : MonoBehaviour
     {
 	    audio = GetComponent<AudioSource>();
 	    audio.playOnAwake = false;
+
+	    reloadSource = GameObject.FindGameObjectWithTag("Spotlight").GetComponent<AudioSource>();
 	    shootSound = Resources.Load("Shooting Sound") as AudioClip;
-	    reloadSound = Resources.Load("Gun Reload Reload") as AudioClip;
-	    
-        laser = GetComponent<LineRenderer>();
+	    deathSound = Resources.Load("Enemy Death Sound") as AudioClip;
+
+	    laser = GetComponent<LineRenderer>();
 		if (player_shooting)
         {
             firing_speed = player.get_reload_speed();
@@ -192,11 +194,11 @@ public class ShootingScript : MonoBehaviour
 	IEnumerator player_reload()
     {
         /* Testing */
+        reloadSource.PlayOneShot(reloadSource.clip);
         Debug.Log("Player reloading...");
         /* Prevent player from firing for their reload time (firing_speed) while ammo is restocked */
         ammo_text.text = "Reloading...";
 		cooldown = true;
-		audio.PlayOneShot(reloadSound);
 		yield return new WaitForSeconds(firing_speed);
 		clip_remaining = clip_size;
         cooldown = false;
@@ -226,9 +228,13 @@ public class ShootingScript : MonoBehaviour
                     Debug.Log("Detected Enemy: Health now " + hit.collider.GetComponent<EnemyScript>().get_health());
 					if (hit.collider.GetComponent<EnemyScript>().get_health() <= 0)
 					{
+						AudioSource enem_die_noise = hit.collider.GetComponent<AudioSource>();
+						enem_die_noise.playOnAwake = false;
+						enem_die_noise.clip = deathSound;
+						enem_die_noise.PlayOneShot(enem_die_noise.clip);
 						player.add_money(hit.collider.GetComponent<EnemyScript>().get_money_drop());
 						Debug.Log("New Schmoney Balance: " + player.get_money());
-						Destroy(hit.collider.gameObject);
+						Destroy(hit.collider.gameObject, enem_die_noise.clip.length);
 					}
                 }
             }
