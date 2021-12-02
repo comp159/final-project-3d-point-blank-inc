@@ -8,6 +8,8 @@ public class ShopKeeper : MonoBehaviour
 {
     [SerializeField] private GameObject shopUI;
     private ShopScript shopScript;
+
+    private GameObject shopKeeperSpawn;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +17,8 @@ public class ShopKeeper : MonoBehaviour
         shopScript = temp.GetComponent<ShopScript>();
         shopUI.SetActive(false);
         Time.timeScale = 1;
+        shopKeeperSpawn = GameObject.FindGameObjectWithTag("Shop Keeper Spawn");
+        this.transform.position = shopKeeperSpawn.transform.position;
     }
 
     // Update is called once per frame
