@@ -88,6 +88,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 18.256447, z: 33.94323}
   m_Center: {x: 0, y: 8.628223, z: -3.6257706}
+--- !u!1 &3675100374221607543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3942325784679291895}
+  m_Layer: 0
+  m_Name: Shop Keeper Spawn
+  m_TagString: Shop Keeper Spawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3942325784679291895
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3675100374221607543}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28.7, y: 0, z: 20.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4905400837491464283}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2567549140203346895
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1574,15 +1604,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5640def9868a9794094eb78d3fc107f7, type: 3}
---- !u!1 &5575842036472241160 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3110937333283675389, guid: 5640def9868a9794094eb78d3fc107f7,
-    type: 3}
-  m_PrefabInstance: {fileID: 7371578744961597685}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &771644788269552791 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7852154693422093410, guid: 5640def9868a9794094eb78d3fc107f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 7371578744961597685}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5575842036472241160 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3110937333283675389, guid: 5640def9868a9794094eb78d3fc107f7,
     type: 3}
   m_PrefabInstance: {fileID: 7371578744961597685}
   m_PrefabAsset: {fileID: 0}
@@ -1820,80 +1850,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 303711ace1877a3479bfe4bb0c3add97, type: 3}
---- !u!1001 &8393113806998269340
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 4905400837491464283}
-    m_Modifications:
-    - target: {fileID: 568288222198239052, guid: e455aa2c3db177a4fa6a6145c057873a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 568288222198239052, guid: e455aa2c3db177a4fa6a6145c057873a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 568288222198239052, guid: e455aa2c3db177a4fa6a6145c057873a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 568288222198239052, guid: e455aa2c3db177a4fa6a6145c057873a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 568288222198239052, guid: e455aa2c3db177a4fa6a6145c057873a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 568288222198239052, guid: e455aa2c3db177a4fa6a6145c057873a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 568288222198239052, guid: e455aa2c3db177a4fa6a6145c057873a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 568288222198239052, guid: e455aa2c3db177a4fa6a6145c057873a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 568288222198239052, guid: e455aa2c3db177a4fa6a6145c057873a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 568288222198239052, guid: e455aa2c3db177a4fa6a6145c057873a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 568288222198239052, guid: e455aa2c3db177a4fa6a6145c057873a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 912303882113799670, guid: e455aa2c3db177a4fa6a6145c057873a,
-        type: 3}
-      propertyPath: m_Name
-      value: Shop Keeper
-      objectReference: {fileID: 0}
-    - target: {fileID: 912303882113799670, guid: e455aa2c3db177a4fa6a6145c057873a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e455aa2c3db177a4fa6a6145c057873a, type: 3}
 --- !u!1001 &9091178448136241946
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -45,6 +45,8 @@ public class UIToggleScript : MonoBehaviour
     {
         audio.PlayOneShot(ded);
         gameOverPanel.SetActive(true);
+        playAgainButton.SetActive(true);
+        quitButton.SetActive(true);
     }
     public void PauseGame()
     {

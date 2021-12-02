@@ -24,6 +24,7 @@ TagManager:
   - Box
   - Burst
   - Spread
+  - ShopScreen
   - Spotlight
   layers:
   - Default
@@ -62,3 +63,4 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+
