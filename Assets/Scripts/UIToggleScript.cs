@@ -39,12 +39,6 @@ public class UIToggleScript : MonoBehaviour
         {
             PauseGame();
         }
-
-        if (player.get_cur_health() <= 0)
-        {
-            audio.PlayOneShot(ded);
-            GameOver();
-        }
     }
 
     public void GameOver()
